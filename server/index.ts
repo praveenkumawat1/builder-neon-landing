@@ -1,14 +1,6 @@
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
-import { testConnection, initializeDatabase } from "./config/database";
-import {
-  createEnrollment,
-  getEnrollment,
-  updateTransaction,
-  getEnrollmentStats,
-  getAllEnrollments,
-} from "./routes/enrollment";
 
 export function createServer() {
   const app = express();
@@ -18,18 +10,6 @@ export function createServer() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
-  // Initialize database on startup
-  initializeDatabase()
-    .then(() => {
-      console.log("🚀 Database ready for Frontend Bootcamp!");
-    })
-    .catch((error) => {
-      console.error("💥 Database initialization failed:", error);
-    });
-
-  // Test database connection
-  testConnection();
-
   // Example API routes
   app.get("/api/ping", (_req, res) => {
     res.json({ message: "Hello from Frontend Bootcamp server!" });
@@ -37,19 +17,26 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
-  // Enrollment routes
-  app.post("/api/enrollment", createEnrollment);
-  app.get("/api/enrollment/:email", getEnrollment);
-  app.put("/api/enrollment/:email/transaction", updateTransaction);
-  app.get("/api/admin/enrollments", getAllEnrollments);
-  app.get("/api/admin/stats", getEnrollmentStats);
+  // Temporary enrollment endpoint (will be replaced with online database)
+  app.post("/api/enrollment", (_req, res) => {
+    res.json({
+      success: true,
+      message: "Enrollment received. Online database integration pending.",
+      enrollmentId: Date.now(),
+    });
+  });
 
-  // Health check with database status
-  app.get("/api/health", async (_req, res) => {
-    const dbStatus = await testConnection();
+  app.put("/api/enrollment/:email/transaction", (_req, res) => {
+    res.json({
+      success: true,
+      message: "Transaction updated. Online database integration pending.",
+    });
+  });
+
+  // Health check
+  app.get("/api/health", (_req, res) => {
     res.json({
       status: "healthy",
-      database: dbStatus ? "connected" : "disconnected",
       timestamp: new Date().toISOString(),
       message: "Frontend Bootcamp server is running!",
     });
