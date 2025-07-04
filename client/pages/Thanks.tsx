@@ -103,7 +103,7 @@ export default function Thanks() {
     ? `Hi! I'm ${userName}. I just requested a free demo session for the Frontend Bootcamp. Looking forward to it! 🎯`
     : `Hi! I'm ${userName}. I just completed my enrollment for the 21-day Frontend Bootcamp (${selectedPlan} plan). Excited to start learning! 🚀`;
 
-  const whatsappLink = `https://wa.me/919876543210?text=${encodeURIComponent(
+  const whatsappLink = `https://wa.me/919772536873?text=${encodeURIComponent(
     whatsappMessage,
   )}`;
 
@@ -456,9 +456,9 @@ export default function Thanks() {
                 size="sm"
                 className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background"
               >
-                <a href="tel:+919876543210">
+                <a href="tel:+919772536873">
                   <Phone className="w-4 h-4 mr-2" />
-                  +91 98765 43210
+                  +91 97725 36873
                 </a>
               </Button>
             </CardContent>
