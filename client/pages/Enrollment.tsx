@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,6 +34,7 @@ import { toast } from "@/hooks/use-toast";
 
 export default function Enrollment() {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const enrollmentType = searchParams.get("type") || "join";
   const formRef = useRef<HTMLDivElement>(null);
   const qrRef = useRef<HTMLDivElement>(null);
@@ -97,13 +98,15 @@ export default function Enrollment() {
       return;
     }
 
-    // For demo, just show success
+    // For demo, navigate to thanks page
     if (isDemo) {
       toast({
-        title: "Demo Booked Successfully! 🎉",
-        description:
-          "We'll send you the demo session link via WhatsApp within 2 hours.",
+        title: "Demo Booked Successfully! ���",
+        description: "Redirecting to confirmation page...",
       });
+      setTimeout(() => {
+        navigate(`/thanks?type=demo`);
+      }, 1500);
       return;
     }
 
@@ -123,9 +126,11 @@ export default function Enrollment() {
       // Complete enrollment
       toast({
         title: "Enrollment Completed! 🚀",
-        description:
-          "Welcome to the bootcamp! Course access will be shared within 10 minutes.",
+        description: "Redirecting to confirmation page...",
       });
+      setTimeout(() => {
+        navigate(`/thanks?type=join`);
+      }, 1500);
       return;
     }
 
