@@ -131,7 +131,7 @@ npm run dev
 const enrollmentData = {
   name: "John Doe",
   email: "john@example.com",
-  phone: "+91 9876543210",
+  phone: "+91 9772536873",
   education: "undergraduate",
   experience: "none",
   motivation: "Want to become a frontend developer",
