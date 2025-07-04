@@ -155,7 +155,7 @@ export default function Enrollment() {
       // For demo, create WhatsApp message and navigate to thanks page
       if (isDemo) {
         const whatsappMessage = createWhatsAppMessage();
-        const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
+        const whatsappUrl = `https://wa.me/919772536873?text=${encodeURIComponent(whatsappMessage)}`;
 
         // Open WhatsApp
         window.open(whatsappUrl, "_blank");
@@ -190,7 +190,7 @@ export default function Enrollment() {
 
         // Create WhatsApp message with transaction details
         const whatsappMessage = createWhatsAppMessage();
-        const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
+        const whatsappUrl = `https://wa.me/919772536873?text=${encodeURIComponent(whatsappMessage)}`;
 
         // Open WhatsApp
         window.open(whatsappUrl, "_blank");
