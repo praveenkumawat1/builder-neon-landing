@@ -36,6 +36,7 @@ export default function Enrollment() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const enrollmentType = searchParams.get("type") || "join";
+  const selectedPlan = searchParams.get("plan") || "starter";
   const formRef = useRef<HTMLDivElement>(null);
   const qrRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
@@ -101,7 +102,7 @@ export default function Enrollment() {
     // For demo, navigate to thanks page
     if (isDemo) {
       toast({
-        title: "Demo Booked Successfully! ���",
+        title: "Demo Booked Successfully! 🎉",
         description: "Redirecting to confirmation page...",
       });
       setTimeout(() => {
@@ -199,13 +200,15 @@ export default function Enrollment() {
             </Badge>
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
               <span className="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink text-transparent bg-clip-text">
-                {isDemo ? "🎯 Get Your Free Demo" : "🚀 Join the Bootcamp"}
+                {isDemo
+                  ? "🎯 Get Your Free Demo"
+                  : `🚀 Join ${currentPlan.name}`}
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               {isDemo
                 ? "Experience our teaching style with a free 1-hour demo session covering HTML basics and live Q&A"
-                : "Complete your enrollment to secure your spot in the 21-day Frontend Bootcamp"}
+                : `Complete your enrollment for the ${currentPlan.name} and start your frontend development journey`}
             </p>
           </div>
         </div>
@@ -378,7 +381,7 @@ export default function Enrollment() {
                       ? "🎯 Book Free Demo"
                       : showPayment && formData.transactionId
                         ? "✅ Complete Enrollment"
-                        : "💰 Proceed to Payment (₹99)"}
+                        : `💰 Proceed to Payment (${currentPlan.price})`}
                   </Button>
                 </form>
               </CardContent>
@@ -433,12 +436,14 @@ export default function Enrollment() {
                   >
                     <div className="text-center mb-6">
                       <div className="text-3xl font-bold mb-2">
-                        <span className="bg-gradient-to-r from-neon-green to-neon-cyan text-transparent bg-clip-text">
-                          ₹99
+                        <span
+                          className={`bg-gradient-to-r from-${currentPlan.color} to-neon-cyan text-transparent bg-clip-text`}
+                        >
+                          {currentPlan.price}
                         </span>
                       </div>
                       <p className="text-sm text-muted-foreground">
-                        One-time payment • Lifetime access
+                        {currentPlan.name} • Lifetime access
                       </p>
                     </div>
 
@@ -512,14 +517,7 @@ export default function Enrollment() {
                         "Course overview & roadmap",
                         "Special enrollment discount",
                       ]
-                    : [
-                        "21 days live + recorded classes",
-                        "3 real-world projects",
-                        "Completion certificate",
-                        "WhatsApp doubt support",
-                        "Community access",
-                        "Lifetime course updates",
-                      ]
+                    : currentPlan.features
                   ).map((benefit, index) => (
                     <li key={index} className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-neon-green flex-shrink-0" />

@@ -189,10 +189,10 @@ export default function Index() {
           <div className="hero-buttons mb-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              onClick={() => navigate("/enrollment?type=join")}
+              onClick={() => navigate("/enrollment?type=join&plan=starter")}
               className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300"
             >
-              Join Now for ₹99
+              Join Now Starting ₹99
             </Button>
             <Button
               variant="outline"
@@ -542,49 +542,170 @@ export default function Index() {
       </section>
 
       {/* Pricing Section */}
-      <section className="animate-section py-20 px-4">
-        <div className="container max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-12">
+      <section className="animate-section py-20 px-4" data-section="pricing">
+        <div className="container max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-neon-green to-neon-cyan text-transparent bg-clip-text">
-              Simple Pricing
+              Choose Your Plan
             </span>
           </h2>
+          <p className="text-xl text-muted-foreground mb-16 max-w-3xl mx-auto">
+            Select the perfect plan for your learning journey. All plans include
+            lifetime access!
+          </p>
 
-          <Card className="bg-gradient-to-br from-card/80 to-card/40 border-neon-purple max-w-md mx-auto">
-            <CardHeader className="text-center">
-              <CardTitle className="text-3xl">Complete Bootcamp</CardTitle>
-              <div className="text-6xl font-bold">
-                <span className="bg-gradient-to-r from-neon-purple to-neon-pink text-transparent bg-clip-text">
-                  ₹99
-                </span>
-              </div>
-              <CardDescription className="text-lg">
-                One-time payment • Lifetime access
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {[
-                "21 Days Live + Recorded Classes",
-                "3 Real-world Projects",
-                "Completion Certificate",
-                "Free Community Access",
-                "Live Doubt Sessions",
-                "WhatsApp Support",
-              ].map((feature, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-neon-green" />
-                  <span>{feature}</span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Starter Plan */}
+            <Card className="bg-card/80 border-border hover:border-neon-green/50 transition-all duration-300 relative">
+              <CardHeader className="text-center">
+                <Badge
+                  variant="outline"
+                  className="border-neon-green text-neon-green mb-2 mx-auto w-fit"
+                >
+                  Most Popular
+                </Badge>
+                <CardTitle className="text-2xl">Starter</CardTitle>
+                <div className="text-5xl font-bold">
+                  <span className="bg-gradient-to-r from-neon-green to-neon-cyan text-transparent bg-clip-text">
+                    ₹99
+                  </span>
                 </div>
-              ))}
-              <Button
-                size="lg"
-                onClick={() => navigate("/enrollment?type=join")}
-                className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-bold py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300 mt-6"
-              >
-                Enroll Now
-              </Button>
-            </CardContent>
-          </Card>
+                <CardDescription className="text-base">
+                  Perfect for beginners
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[
+                  "21 Days Live Classes",
+                  "Recorded Sessions Access",
+                  "3 Guided Projects",
+                  "WhatsApp Support",
+                  "Completion Certificate",
+                  "Community Access",
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-neon-green flex-shrink-0" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+                <Button
+                  size="lg"
+                  onClick={() => navigate("/enrollment?type=join&plan=starter")}
+                  className="w-full bg-gradient-to-r from-neon-green to-neon-cyan hover:from-neon-green/80 hover:to-neon-cyan/80 text-background font-bold py-3 text-base shadow-lg hover:shadow-neon-green/25 transition-all duration-300 mt-6"
+                >
+                  Get Started
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Pro Plan */}
+            <Card className="bg-gradient-to-br from-card/80 to-card/40 border-neon-purple border-2 hover:border-neon-purple/80 transition-all duration-300 relative scale-105">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                <Badge className="bg-gradient-to-r from-neon-purple to-neon-pink text-white px-4 py-1">
+                  RECOMMENDED
+                </Badge>
+              </div>
+              <CardHeader className="text-center pt-8">
+                <CardTitle className="text-2xl">Pro</CardTitle>
+                <div className="text-5xl font-bold">
+                  <span className="bg-gradient-to-r from-neon-purple to-neon-pink text-transparent bg-clip-text">
+                    ₹199
+                  </span>
+                </div>
+                <CardDescription className="text-base">
+                  Best value for serious learners
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[
+                  "Everything in Starter",
+                  "1-on-1 Doubt Sessions (3x)",
+                  "Portfolio Review & Feedback",
+                  "Interview Preparation",
+                  "Job Referrals Network",
+                  "Premium Resources & Tools",
+                  "Priority Support",
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-neon-purple flex-shrink-0" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+                <Button
+                  size="lg"
+                  onClick={() => navigate("/enrollment?type=join&plan=pro")}
+                  className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-bold py-3 text-base shadow-lg hover:shadow-neon-purple/25 transition-all duration-300 mt-6"
+                >
+                  Go Pro
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Elite Plan */}
+            <Card className="bg-card/80 border-border hover:border-neon-cyan/50 transition-all duration-300 relative">
+              <CardHeader className="text-center">
+                <Badge
+                  variant="outline"
+                  className="border-neon-cyan text-neon-cyan mb-2 mx-auto w-fit"
+                >
+                  Premium
+                </Badge>
+                <CardTitle className="text-2xl">Elite</CardTitle>
+                <div className="text-5xl font-bold">
+                  <span className="bg-gradient-to-r from-neon-cyan to-neon-purple text-transparent bg-clip-text">
+                    ₹399
+                  </span>
+                </div>
+                <CardDescription className="text-base">
+                  Complete career transformation
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                {[
+                  "Everything in Pro",
+                  "Unlimited 1-on-1 Sessions",
+                  "Live Portfolio Building",
+                  "Mock Interviews (5x)",
+                  "LinkedIn Profile Optimization",
+                  "Guaranteed Job Referrals",
+                  "6 Months Career Mentorship",
+                  "Advanced React/Node.js Bonus",
+                ].map((feature, index) => (
+                  <div key={index} className="flex items-center gap-2 text-sm">
+                    <CheckCircle className="w-4 h-4 text-neon-cyan flex-shrink-0" />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+                <Button
+                  size="lg"
+                  onClick={() => navigate("/enrollment?type=join&plan=elite")}
+                  className="w-full bg-gradient-to-r from-neon-cyan to-neon-purple hover:from-neon-cyan/80 hover:to-neon-purple/80 text-background font-bold py-3 text-base shadow-lg hover:shadow-neon-cyan/25 transition-all duration-300 mt-6"
+                >
+                  Go Elite
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-sm text-muted-foreground mb-4">
+              🔒 All plans include lifetime access • 7-day money-back guarantee
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-xs text-muted-foreground">
+              <span className="flex items-center gap-1">
+                <Shield className="w-3 h-3" />
+                Secure Payment
+              </span>
+              <span className="flex items-center gap-1">
+                <Award className="w-3 h-3" />
+                Certificate Included
+              </span>
+              <span className="flex items-center gap-1">
+                <Users className="w-3 h-3" />
+                Community Access
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -657,10 +778,17 @@ export default function Index() {
 
           <Button
             size="lg"
-            onClick={() => navigate("/enrollment?type=join")}
+            onClick={() => {
+              const pricingSection = document.querySelector(
+                '[data-section="pricing"]',
+              );
+              if (pricingSection) {
+                pricingSection.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
             className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-bold px-12 py-6 text-xl shadow-2xl hover:shadow-neon-purple/25 transition-all duration-300 hover:scale-105"
           >
-            Join the Bootcamp
+            Choose Your Plan
           </Button>
         </div>
       </section>
