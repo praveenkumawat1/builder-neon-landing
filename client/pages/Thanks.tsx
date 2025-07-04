@@ -96,16 +96,8 @@ export default function Thanks() {
 
   const isDemo = enrollmentType === "demo";
 
-  const userName = searchParams.get("name") || "Student";
+  const userEmail = searchParams.get("email") || "user@example.com";
   const selectedPlan = searchParams.get("plan") || "starter";
-
-  const whatsappMessage = isDemo
-    ? `Hi! I'm ${userName}. I just requested a free demo session for the Frontend Bootcamp. Looking forward to it! 🎯`
-    : `Hi! I'm ${userName}. I just completed my enrollment for the 21-day Frontend Bootcamp (${selectedPlan} plan). Excited to start learning! 🚀`;
-
-  const whatsappLink = `https://wa.me/919772536873?text=${encodeURIComponent(
-    whatsappMessage,
-  )}`;
 
   return (
     <div className="min-h-screen bg-background text-foreground dark">
@@ -235,32 +227,7 @@ export default function Thanks() {
             </span>
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* WhatsApp */}
-            <Card className="bg-card/80 border-border hover:border-neon-green/50 transition-all duration-300 hover:shadow-lg hover:shadow-neon-green/10">
-              <CardContent className="p-6 text-center">
-                <MessageCircle className="w-12 h-12 text-neon-green mx-auto mb-4" />
-                <h3 className="font-semibold mb-2">WhatsApp</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Quick support & updates
-                </p>
-                <Button
-                  asChild
-                  size="sm"
-                  className="bg-neon-green hover:bg-neon-green/80 text-background"
-                >
-                  <a
-                    href={whatsappLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Message Now
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Email */}
             <Card className="bg-card/80 border-border hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-lg hover:shadow-neon-cyan/10">
               <CardContent className="p-6 text-center">
@@ -409,20 +376,16 @@ export default function Thanks() {
 
               <div className="mt-8 pt-6 border-t border-border text-center">
                 <p className="text-sm text-muted-foreground mb-4">
-                  Have questions? Don't hesitate to reach out!
+                  Have questions? Contact us via email or phone!
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button
                     asChild
-                    className="bg-gradient-to-r from-neon-green to-neon-cyan hover:from-neon-green/80 hover:to-neon-cyan/80"
+                    className="bg-gradient-to-r from-neon-cyan to-neon-purple hover:from-neon-cyan/80 hover:to-neon-purple/80"
                   >
-                    <a
-                      href={whatsappLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      WhatsApp Support
+                    <a href="mailto:praveen@frontendbootcamp.com">
+                      <Mail className="w-4 h-4 mr-2" />
+                      Email Support
                     </a>
                   </Button>
                   <Button
@@ -441,14 +404,14 @@ export default function Thanks() {
           </Card>
         </div>
 
-        {/* Emergency Contact */}
+        {/* Support Information */}
         <div className="mt-12 text-center">
           <Card className="bg-card/40 border-border/30 max-w-md mx-auto">
             <CardContent className="p-6">
-              <Phone className="w-8 h-8 text-neon-cyan mx-auto mb-3" />
-              <h4 className="font-semibold mb-2">Emergency Contact</h4>
+              <Mail className="w-8 h-8 text-neon-cyan mx-auto mb-3" />
+              <h4 className="font-semibold mb-2">Support Contact</h4>
               <p className="text-sm text-muted-foreground mb-3">
-                For urgent issues or technical support
+                For any questions or technical support
               </p>
               <Button
                 asChild
@@ -456,9 +419,9 @@ export default function Thanks() {
                 size="sm"
                 className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background"
               >
-                <a href="tel:+919772536873">
-                  <Phone className="w-4 h-4 mr-2" />
-                  +91 97725 36873
+                <a href="mailto:praveen@frontendbootcamp.com">
+                  <Mail className="w-4 h-4 mr-2" />
+                  Email Support
                 </a>
               </Button>
             </CardContent>

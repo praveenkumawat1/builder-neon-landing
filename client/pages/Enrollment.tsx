@@ -626,10 +626,8 @@ export default function Enrollment() {
 
                       <div className="text-xs text-muted-foreground text-center space-y-1">
                         <p>
-                          After payment, send screenshot to{" "}
-                          <span className="text-neon-cyan">
-                            +91 97725 36873
-                          </span>
+                          After payment, enter your transaction ID above to
+                          complete enrollment
                         </p>
                         <p>You'll receive course access within 10 minutes</p>
                       </div>
