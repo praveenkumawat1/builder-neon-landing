@@ -87,6 +87,50 @@ export default function Enrollment() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  const createWhatsAppMessage = () => {
+    const baseMessage = `🚀 *Frontend Bootcamp ${isDemo ? "Demo Request" : "Enrollment"}*\n\n`;
+
+    let message = baseMessage;
+    message += `👤 *Name:* ${formData.name}\n`;
+    message += `📧 *Email:* ${formData.email}\n`;
+    message += `📱 *Phone:* ${formData.phone}\n`;
+
+    if (formData.education) {
+      message += `🎓 *Education:* ${formData.education}\n`;
+    }
+
+    if (formData.experience) {
+      message += `💻 *Experience:* ${formData.experience}\n`;
+    }
+
+    if (!isDemo) {
+      message += `📦 *Selected Plan:* ${currentPlan.name} (${currentPlan.price})\n`;
+
+      if (showPayment && formData.transactionId) {
+        message += `💳 *Transaction ID:* ${formData.transactionId}\n`;
+        message += `✅ *Payment Status:* Completed\n`;
+      } else {
+        message += `💳 *Payment Status:* Pending\n`;
+      }
+    }
+
+    if (formData.motivation) {
+      message += `🎯 *Motivation:* ${formData.motivation}\n`;
+    }
+
+    message += `\n📅 *Submitted:* ${new Date().toLocaleString()}\n`;
+
+    if (isDemo) {
+      message += `\n✨ Please send me the demo session link!`;
+    } else if (showPayment && formData.transactionId) {
+      message += `\n✨ Payment completed! Please provide course access.`;
+    } else {
+      message += `\n✨ I'm interested in enrolling. Please send payment details.`;
+    }
+
+    return message;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -108,46 +152,24 @@ export default function Enrollment() {
     setIsSubmitting(true);
 
     try {
-      // For demo, submit and navigate to thanks page
+      // For demo, create WhatsApp message and navigate to thanks page
       if (isDemo) {
-        const enrollmentData = {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          education: formData.education,
-          experience: formData.experience,
-          motivation: formData.motivation,
-          enrollmentType: "demo" as const,
-          selectedPlan: "starter" as const,
-        };
+        const whatsappMessage = createWhatsAppMessage();
+        const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
 
-        const response = await fetch("/api/enrollment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(enrollmentData),
+        // Open WhatsApp
+        window.open(whatsappUrl, "_blank");
+
+        toast({
+          title: "Demo Request Sent! 🎉",
+          description: "WhatsApp opened with your request. Redirecting...",
         });
 
-        const result = await response.json();
-
-        if (result.success) {
-          toast({
-            title: "Demo Booked Successfully! 🎉",
-            description: "Redirecting to confirmation page...",
-          });
-          setTimeout(() => {
-            navigate(
-              `/thanks?type=demo&email=${encodeURIComponent(formData.email)}`,
-            );
-          }, 1500);
-        } else {
-          toast({
-            title: "Booking Failed",
-            description: result.message || "Please try again.",
-            variant: "destructive",
-          });
-        }
+        setTimeout(() => {
+          navigate(
+            `/thanks?type=demo&name=${encodeURIComponent(formData.name)}`,
+          );
+        }, 2000);
         setIsSubmitting(false);
         return;
       }
@@ -162,97 +184,55 @@ export default function Enrollment() {
               "Please enter your payment transaction ID to complete enrollment.",
             variant: "destructive",
           });
+          setIsSubmitting(false);
           return;
         }
 
-        // Update existing enrollment with transaction ID
-        const response = await fetch(
-          `/api/enrollment/${encodeURIComponent(formData.email)}/transaction`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ transactionId: formData.transactionId }),
-          },
-        );
+        // Create WhatsApp message with transaction details
+        const whatsappMessage = createWhatsAppMessage();
+        const whatsappUrl = `https://wa.me/919876543210?text=${encodeURIComponent(whatsappMessage)}`;
 
-        const result = await response.json();
+        // Open WhatsApp
+        window.open(whatsappUrl, "_blank");
 
-        if (result.success) {
-          toast({
-            title: "Enrollment Completed! 🚀",
-            description: "Redirecting to confirmation page...",
-          });
-          setTimeout(() => {
-            navigate(
-              `/thanks?type=join&email=${encodeURIComponent(formData.email)}`,
-            );
-          }, 1500);
-        } else {
-          toast({
-            title: "Update Failed",
-            description: result.message || "Please try again.",
-            variant: "destructive",
-          });
-        }
+        toast({
+          title: "Enrollment Completed! 🚀",
+          description: "WhatsApp opened with your details. Redirecting...",
+        });
+
+        setTimeout(() => {
+          navigate(
+            `/thanks?type=join&name=${encodeURIComponent(formData.name)}&plan=${selectedPlan}`,
+          );
+        }, 2000);
         setIsSubmitting(false);
         return;
       }
 
-      // Show payment section for the first time - first submit basic info
-      const basicEnrollmentData = {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        education: formData.education,
-        experience: formData.experience,
-        motivation: formData.motivation,
-        enrollmentType: "join" as const,
-        selectedPlan: selectedPlan as "starter" | "pro" | "elite",
-      };
+      // Show payment section for the first time
+      setShowPayment(true);
 
-      const response = await fetch("/api/enrollment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(basicEnrollmentData),
+      // Animate to payment section
+      gsap.to(qrRef.current, {
+        scale: 1,
+        opacity: 1,
+        duration: 0.8,
+        ease: "back.out(1.7)",
       });
 
-      const result = await response.json();
-
-      if (result.success) {
-        setShowPayment(true);
-
-        // Animate to payment section
-        gsap.to(qrRef.current, {
-          scale: 1,
-          opacity: 1,
-          duration: 0.8,
-          ease: "back.out(1.7)",
-        });
-
-        toast({
-          title: "Form Submitted!",
-          description:
-            "Please make payment and enter transaction ID to complete enrollment.",
-        });
-      } else {
-        toast({
-          title: "Submission Failed",
-          description: result.message || "Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Enrollment error:", error);
       toast({
-        title: "Network Error",
-        description: "Please check your connection and try again.",
+        title: "Form Submitted!",
+        description:
+          "Please make payment and enter transaction ID to complete enrollment.",
+      });
+      setIsSubmitting(false);
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
         variant: "destructive",
       });
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -429,7 +409,11 @@ export default function Enrollment() {
                       }
                       className="bg-background/50 border-border focus:border-neon-cyan"
                       required
+                      minLength={10}
                     />
+                    <p className="text-xs text-muted-foreground">
+                      Enter your WhatsApp number for course updates
+                    </p>
                   </div>
 
                   <div className="space-y-2">

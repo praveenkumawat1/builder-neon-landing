@@ -96,9 +96,12 @@ export default function Thanks() {
 
   const isDemo = enrollmentType === "demo";
 
+  const userName = searchParams.get("name") || "Student";
+  const selectedPlan = searchParams.get("plan") || "starter";
+
   const whatsappMessage = isDemo
-    ? "Hi! I just booked a free demo session for the Frontend Bootcamp. Looking forward to it! 🎯"
-    : "Hi! I just completed my enrollment for the 21-day Frontend Bootcamp. Excited to start learning! 🚀";
+    ? `Hi! I'm ${userName}. I just requested a free demo session for the Frontend Bootcamp. Looking forward to it! 🎯`
+    : `Hi! I'm ${userName}. I just completed my enrollment for the 21-day Frontend Bootcamp (${selectedPlan} plan). Excited to start learning! 🚀`;
 
   const whatsappLink = `https://wa.me/919876543210?text=${encodeURIComponent(
     whatsappMessage,
