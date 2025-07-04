@@ -86,7 +86,7 @@ export default function Enrollment() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate required fields
@@ -99,58 +99,150 @@ export default function Enrollment() {
       return;
     }
 
-    // For demo, navigate to thanks page
-    if (isDemo) {
-      toast({
-        title: "Demo Booked Successfully! 🎉",
-        description: "Redirecting to confirmation page...",
-      });
-      setTimeout(() => {
-        navigate(`/thanks?type=demo`);
-      }, 1500);
-      return;
-    }
+    try {
+      // For demo, submit and navigate to thanks page
+      if (isDemo) {
+        const enrollmentData = {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          education: formData.education,
+          experience: formData.experience,
+          motivation: formData.motivation,
+          enrollmentType: "demo" as const,
+          selectedPlan: "starter" as const,
+        };
 
-    // For paid enrollment, check if payment section is already shown
-    if (showPayment) {
-      // Validate transaction ID
-      if (!formData.transactionId) {
-        toast({
-          title: "Transaction ID Required",
-          description:
-            "Please enter your payment transaction ID to complete enrollment.",
-          variant: "destructive",
+        const response = await fetch("/api/enrollment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(enrollmentData),
         });
+
+        const result = await response.json();
+
+        if (result.success) {
+          toast({
+            title: "Demo Booked Successfully! 🎉",
+            description: "Redirecting to confirmation page...",
+          });
+          setTimeout(() => {
+            navigate(
+              `/thanks?type=demo&email=${encodeURIComponent(formData.email)}`,
+            );
+          }, 1500);
+        } else {
+          toast({
+            title: "Booking Failed",
+            description: result.message || "Please try again.",
+            variant: "destructive",
+          });
+        }
         return;
       }
 
-      // Complete enrollment
-      toast({
-        title: "Enrollment Completed! 🚀",
-        description: "Redirecting to confirmation page...",
+      // For paid enrollment, check if payment section is already shown
+      if (showPayment) {
+        // Validate transaction ID
+        if (!formData.transactionId) {
+          toast({
+            title: "Transaction ID Required",
+            description:
+              "Please enter your payment transaction ID to complete enrollment.",
+            variant: "destructive",
+          });
+          return;
+        }
+
+        // Update existing enrollment with transaction ID
+        const response = await fetch(
+          `/api/enrollment/${encodeURIComponent(formData.email)}/transaction`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ transactionId: formData.transactionId }),
+          },
+        );
+
+        const result = await response.json();
+
+        if (result.success) {
+          toast({
+            title: "Enrollment Completed! 🚀",
+            description: "Redirecting to confirmation page...",
+          });
+          setTimeout(() => {
+            navigate(
+              `/thanks?type=join&email=${encodeURIComponent(formData.email)}`,
+            );
+          }, 1500);
+        } else {
+          toast({
+            title: "Update Failed",
+            description: result.message || "Please try again.",
+            variant: "destructive",
+          });
+        }
+        return;
+      }
+
+      // Show payment section for the first time - first submit basic info
+      const basicEnrollmentData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        education: formData.education,
+        experience: formData.experience,
+        motivation: formData.motivation,
+        enrollmentType: "join" as const,
+        selectedPlan: selectedPlan as "starter" | "pro" | "elite",
+      };
+
+      const response = await fetch("/api/enrollment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(basicEnrollmentData),
       });
-      setTimeout(() => {
-        navigate(`/thanks?type=join`);
-      }, 1500);
-      return;
+
+      const result = await response.json();
+
+      if (result.success) {
+        setShowPayment(true);
+
+        // Animate to payment section
+        gsap.to(qrRef.current, {
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+        });
+
+        toast({
+          title: "Form Submitted!",
+          description:
+            "Please make payment and enter transaction ID to complete enrollment.",
+        });
+      } else {
+        toast({
+          title: "Submission Failed",
+          description: result.message || "Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Enrollment error:", error);
+      toast({
+        title: "Network Error",
+        description: "Please check your connection and try again.",
+        variant: "destructive",
+      });
     }
-
-    // Show payment section for the first time
-    setShowPayment(true);
-
-    // Animate to payment section
-    gsap.to(qrRef.current, {
-      scale: 1,
-      opacity: 1,
-      duration: 0.8,
-      ease: "back.out(1.7)",
-    });
-
-    toast({
-      title: "Form Submitted!",
-      description:
-        "Please make payment and enter transaction ID to complete enrollment.",
-    });
   };
 
   const copyUpiId = () => {
