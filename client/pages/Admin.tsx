@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { isAdminAuthenticated, logoutAdmin } from "@/lib/auth";
 import {
   Card,
   CardContent,
@@ -66,11 +67,25 @@ interface Stats {
 }
 
 export default function Admin() {
+  const navigate = useNavigate();
   const [enrollments, setEnrollments] = useState<EnrollmentData[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedEnrollment, setSelectedEnrollment] =
     useState<EnrollmentData | null>(null);
+
+  // Check authentication on component mount
+  useEffect(() => {
+    if (!isAdminAuthenticated()) {
+      toast({
+        title: "Access Denied",
+        description: "Please login to access admin dashboard",
+        variant: "destructive",
+      });
+      navigate("/");
+      return;
+    }
+  }, [navigate]);
 
   const fetchData = async () => {
     setLoading(true);
@@ -240,6 +255,20 @@ export default function Admin() {
           </div>
 
           <div className="flex gap-2">
+            <Button
+              onClick={() => {
+                logoutAdmin();
+                toast({
+                  title: "Logged Out",
+                  description: "You have been logged out successfully",
+                });
+                navigate("/");
+              }}
+              variant="outline"
+              className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
+            >
+              Logout
+            </Button>
             <Button
               onClick={fetchData}
               variant="outline"

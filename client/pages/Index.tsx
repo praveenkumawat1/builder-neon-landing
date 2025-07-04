@@ -1,7 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { AdminLogin } from "@/components/AdminLogin";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -46,6 +47,7 @@ export default function Index() {
   const navigate = useNavigate();
   const heroRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
 
   useEffect(() => {
     // Hero animations
@@ -141,6 +143,10 @@ export default function Index() {
   }, []);
 
   const targetDate = "2024-07-10T23:59:59";
+
+  const handleAdminLogin = () => {
+    navigate("/admin");
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground dark">
@@ -893,10 +899,28 @@ export default function Index() {
           </div>
 
           <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 Frontend Bootcamp. All rights reserved.</p>
+            <div className="flex items-center justify-between">
+              <p>&copy; 2024 Frontend Bootcamp. All rights reserved.</p>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setShowAdminLogin(true)}
+                className="text-muted-foreground hover:text-neon-cyan transition-colors"
+              >
+                <Shield className="w-4 h-4 mr-2" />
+                Admin
+              </Button>
+            </div>
           </div>
         </div>
       </footer>
+
+      {/* Admin Login Modal */}
+      <AdminLogin
+        isOpen={showAdminLogin}
+        onClose={() => setShowAdminLogin(false)}
+        onLogin={handleAdminLogin}
+      />
     </div>
   );
 }
