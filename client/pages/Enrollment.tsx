@@ -160,9 +160,7 @@ export default function Enrollment() {
             </Badge>
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
               <span className="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink text-transparent bg-clip-text">
-                {isDemo
-                  ? "🎯 Get Your Free Demo"
-                  : "🚀 Join the Bootcamp"}
+                {isDemo ? "🎯 Get Your Free Demo" : "🚀 Join the Bootcamp"}
               </span>
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
@@ -198,7 +196,9 @@ export default function Enrollment() {
                       id="name"
                       placeholder="Enter your full name"
                       value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("name", e.target.value)
+                      }
                       className="bg-background/50 border-border focus:border-neon-cyan"
                       required
                     />
@@ -255,7 +255,9 @@ export default function Enrollment() {
                           Undergraduate
                         </SelectItem>
                         <SelectItem value="graduate">Graduate</SelectItem>
-                        <SelectItem value="postgraduate">Postgraduate</SelectItem>
+                        <SelectItem value="postgraduate">
+                          Postgraduate
+                        </SelectItem>
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
@@ -339,7 +341,9 @@ export default function Enrollment() {
                     <div className="w-20 h-20 bg-gradient-to-r from-neon-green to-neon-cyan rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-10 h-10 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold mb-2">Free Demo Session</h3>
+                    <h3 className="text-xl font-bold mb-2">
+                      Free Demo Session
+                    </h3>
                     <p className="text-muted-foreground mb-4">
                       No payment required for the demo!
                     </p>
@@ -415,7 +419,9 @@ export default function Enrollment() {
                       <div className="text-xs text-muted-foreground text-center space-y-1">
                         <p>
                           After payment, send screenshot to{" "}
-                          <span className="text-neon-cyan">+91 98765 43210</span>
+                          <span className="text-neon-cyan">
+                            +91 98765 43210
+                          </span>
                         </p>
                         <p>You'll receive course access within 10 minutes</p>
                       </div>
@@ -434,7 +440,7 @@ export default function Enrollment() {
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2 text-sm">
-                  {isDemo
+                  {(isDemo
                     ? [
                         "1-hour live session",
                         "HTML basics walkthrough",
@@ -450,7 +456,7 @@ export default function Enrollment() {
                         "Community access",
                         "Lifetime course updates",
                       ]
-                  }.map((benefit, index) => (
+                  ).map((benefit, index) => (
                     <li key={index} className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-neon-green flex-shrink-0" />
                       <span>{benefit}</span>
