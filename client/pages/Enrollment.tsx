@@ -44,6 +44,7 @@ export default function Enrollment() {
     education: "",
     experience: "",
     motivation: "",
+    transactionId: "",
   });
   const [showPayment, setShowPayment] = useState(false);
 
@@ -96,7 +97,39 @@ export default function Enrollment() {
       return;
     }
 
-    // Show payment section
+    // For demo, just show success
+    if (isDemo) {
+      toast({
+        title: "Demo Booked Successfully! 🎉",
+        description:
+          "We'll send you the demo session link via WhatsApp within 2 hours.",
+      });
+      return;
+    }
+
+    // For paid enrollment, check if payment section is already shown
+    if (showPayment) {
+      // Validate transaction ID
+      if (!formData.transactionId) {
+        toast({
+          title: "Transaction ID Required",
+          description:
+            "Please enter your payment transaction ID to complete enrollment.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      // Complete enrollment
+      toast({
+        title: "Enrollment Completed! 🚀",
+        description:
+          "Welcome to the bootcamp! Course access will be shared within 10 minutes.",
+      });
+      return;
+    }
+
+    // Show payment section for the first time
     setShowPayment(true);
 
     // Animate to payment section
@@ -109,7 +142,8 @@ export default function Enrollment() {
 
     toast({
       title: "Form Submitted!",
-      description: "Please proceed with payment to complete enrollment.",
+      description:
+        "Please make payment and enter transaction ID to complete enrollment.",
     });
   };
 
@@ -307,6 +341,29 @@ export default function Enrollment() {
                     />
                   </div>
 
+                  {!isDemo && showPayment && (
+                    <div className="space-y-2 p-4 border border-neon-cyan/30 rounded-lg bg-neon-cyan/5">
+                      <Label htmlFor="transactionId">
+                        Transaction ID / UPI Reference Number{" "}
+                        <span className="text-destructive">*</span>
+                      </Label>
+                      <Input
+                        id="transactionId"
+                        placeholder="Enter your payment transaction ID"
+                        value={formData.transactionId}
+                        onChange={(e) =>
+                          handleInputChange("transactionId", e.target.value)
+                        }
+                        className="bg-background/50 border-border focus:border-neon-cyan"
+                        required={showPayment && !isDemo}
+                      />
+                      <p className="text-xs text-muted-foreground">
+                        💡 Enter the transaction ID from your UPI payment to
+                        complete enrollment verification
+                      </p>
+                    </div>
+                  )}
+
                   <Button
                     type="submit"
                     size="lg"
@@ -314,7 +371,9 @@ export default function Enrollment() {
                   >
                     {isDemo
                       ? "🎯 Book Free Demo"
-                      : "💰 Proceed to Payment (₹99)"}
+                      : showPayment && formData.transactionId
+                        ? "✅ Complete Enrollment"
+                        : "💰 Proceed to Payment (₹99)"}
                   </Button>
                 </form>
               </CardContent>
