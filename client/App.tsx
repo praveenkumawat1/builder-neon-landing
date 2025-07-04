@@ -8,8 +8,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
 
 const queryClient = new QueryClient();
+
+// Apply dark mode to document
+if (typeof document !== "undefined") {
+  document.documentElement.classList.add("dark");
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
