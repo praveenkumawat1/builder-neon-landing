@@ -628,7 +628,7 @@ export default function Enrollment() {
                         <p>
                           After payment, send screenshot to{" "}
                           <span className="text-neon-cyan">
-                            +91 98765 43210
+                            +91 97725 36873
                           </span>
                         </p>
                         <p>You'll receive course access within 10 minutes</p>
