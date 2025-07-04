@@ -49,6 +49,7 @@ export default function Enrollment() {
     transactionId: "",
   });
   const [showPayment, setShowPayment] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     // Animate form entrance
@@ -89,6 +90,11 @@ export default function Enrollment() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Prevent duplicate submissions
+    if (isSubmitting) {
+      return;
+    }
+
     // Validate required fields
     if (!formData.name || !formData.email || !formData.phone) {
       toast({
@@ -98,6 +104,8 @@ export default function Enrollment() {
       });
       return;
     }
+
+    setIsSubmitting(true);
 
     try {
       // For demo, submit and navigate to thanks page
@@ -140,6 +148,7 @@ export default function Enrollment() {
             variant: "destructive",
           });
         }
+        setIsSubmitting(false);
         return;
       }
 
@@ -187,6 +196,7 @@ export default function Enrollment() {
             variant: "destructive",
           });
         }
+        setIsSubmitting(false);
         return;
       }
 
@@ -242,6 +252,8 @@ export default function Enrollment() {
         description: "Please check your connection and try again.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -515,13 +527,16 @@ export default function Enrollment() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold py-3 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300"
+                    disabled={isSubmitting}
+                    className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold py-3 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isDemo
-                      ? "🎯 Book Free Demo"
-                      : showPayment && formData.transactionId
-                        ? "✅ Complete Enrollment"
-                        : `💰 Proceed to Payment (${currentPlan.price})`}
+                    {isSubmitting
+                      ? "⏳ Processing..."
+                      : isDemo
+                        ? "🎯 Book Free Demo"
+                        : showPayment && formData.transactionId
+                          ? "✅ Complete Enrollment"
+                          : `💰 Proceed to Payment (${currentPlan.price})`}
                   </Button>
                 </form>
               </CardContent>
