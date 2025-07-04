@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Button } from "@/components/ui/button";
@@ -41,6 +42,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Index() {
+  const navigate = useNavigate();
   const heroRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
 
@@ -187,6 +189,7 @@ export default function Index() {
           <div className="hero-buttons mb-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
+              onClick={() => navigate("/enrollment?type=join")}
               className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300"
             >
               Join Now for ₹99
@@ -194,6 +197,7 @@ export default function Index() {
             <Button
               variant="outline"
               size="lg"
+              onClick={() => navigate("/enrollment?type=demo")}
               className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background font-semibold px-8 py-4 text-lg transition-all duration-300"
             >
               <Play className="w-5 h-5 mr-2" />
@@ -574,6 +578,7 @@ export default function Index() {
               ))}
               <Button
                 size="lg"
+                onClick={() => navigate("/enrollment?type=join")}
                 className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-bold py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300 mt-6"
               >
                 Enroll Now
@@ -652,6 +657,7 @@ export default function Index() {
 
           <Button
             size="lg"
+            onClick={() => navigate("/enrollment?type=join")}
             className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-bold px-12 py-6 text-xl shadow-2xl hover:shadow-neon-purple/25 transition-all duration-300 hover:scale-105"
           >
             Join the Bootcamp
