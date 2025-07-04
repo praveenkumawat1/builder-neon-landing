@@ -65,7 +65,42 @@
     @apply border-border;
   }
 
+  html {
+    @apply dark;
+  }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--neon-purple));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--neon-cyan));
+  }
+
+  /* Glow effects for neon elements */
+  .glow-cyan {
+    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.3);
+  }
+
+  .glow-pink {
+    box-shadow: 0 0 20px hsl(var(--neon-pink) / 0.3);
   }
 }
