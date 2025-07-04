@@ -163,6 +163,54 @@ export default function Enrollment() {
 
   const isDemo = enrollmentType === "demo";
 
+  const planConfig = {
+    starter: {
+      name: "Starter Plan",
+      price: "₹99",
+      color: "neon-green",
+      features: [
+        "21 Days Live Classes",
+        "Recorded Sessions Access",
+        "3 Guided Projects",
+        "WhatsApp Support",
+        "Completion Certificate",
+        "Community Access",
+      ],
+    },
+    pro: {
+      name: "Pro Plan",
+      price: "₹199",
+      color: "neon-purple",
+      features: [
+        "Everything in Starter",
+        "1-on-1 Doubt Sessions (3x)",
+        "Portfolio Review & Feedback",
+        "Interview Preparation",
+        "Job Referrals Network",
+        "Premium Resources & Tools",
+        "Priority Support",
+      ],
+    },
+    elite: {
+      name: "Elite Plan",
+      price: "₹399",
+      color: "neon-cyan",
+      features: [
+        "Everything in Pro",
+        "Unlimited 1-on-1 Sessions",
+        "Live Portfolio Building",
+        "Mock Interviews (5x)",
+        "LinkedIn Profile Optimization",
+        "Guaranteed Job Referrals",
+        "6 Months Career Mentorship",
+        "Advanced React/Node.js Bonus",
+      ],
+    },
+  };
+
+  const currentPlan =
+    planConfig[selectedPlan as keyof typeof planConfig] || planConfig.starter;
+
   return (
     <div className="min-h-screen bg-background text-foreground dark">
       {/* Background particles */}
