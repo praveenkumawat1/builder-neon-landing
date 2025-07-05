@@ -79,17 +79,6 @@ const planDetails: Record<string, PlanDetails> = {
   },
 };
 
-const coupons = {
-  STUDENT50: { discount: 50, type: "amount", description: "Student Discount" },
-  FIRST20: {
-    discount: 20,
-    type: "percentage",
-    description: "First Time Buyer",
-  },
-  SAVE30: { discount: 30, type: "amount", description: "Special Offer" },
-  WELCOME15: { discount: 15, type: "percentage", description: "Welcome Bonus" },
-};
-
 export default function TotalFees() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
