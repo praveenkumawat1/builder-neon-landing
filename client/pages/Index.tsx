@@ -687,7 +687,7 @@ export default function Index() {
                 ))}
                 <Button
                   size="lg"
-                  onClick={() => navigate("/enrollment?type=join&plan=pro")}
+                  onClick={() => navigate("/total-fees?plan=pro")}
                   className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-bold py-3 text-base shadow-lg hover:shadow-neon-purple/25 transition-all duration-300 mt-6"
                 >
                   Go Pro
