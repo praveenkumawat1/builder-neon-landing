@@ -211,7 +211,7 @@ export default function Index() {
 
           <div className="hero-subtitle mb-8">
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Learn HTML, CSS, JavaScript, Tailwind & GSAP with hands-on
+              Learn HTML, CSS, JavaScript, Tailwind CSS and GSAP with hands-on
               projects
             </p>
           </div>
