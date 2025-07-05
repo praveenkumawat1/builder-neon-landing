@@ -86,7 +86,7 @@ export function createServer() {
     }
   });
 
-  app.put("/api/enrollment/:email/transaction", (req, res) => {
+  app.put("/api/enrollment/:email/transaction", async (req, res) => {
     try {
       const { email } = req.params;
       const { transactionId } = req.body;
@@ -101,9 +101,28 @@ export function createServer() {
       const success = EnrollmentStorage.updateTransaction(email, transactionId);
 
       if (success) {
+        // Get the updated enrollment data
+        const enrollment = EnrollmentStorage.findByEmail(email);
+
+        if (enrollment) {
+          // Send receipt email asynchronously
+          EmailService.sendReceiptEmail(enrollment)
+            .then((emailSent) => {
+              if (emailSent) {
+                console.log(`✅ Receipt email sent to ${email}`);
+              } else {
+                console.log(`❌ Failed to send receipt email to ${email}`);
+              }
+            })
+            .catch((error) => {
+              console.error("Email sending error:", error);
+            });
+        }
+
         res.json({
           success: true,
-          message: "Transaction updated successfully",
+          message:
+            "Transaction updated successfully. Receipt email will be sent shortly.",
         });
       } else {
         res.status(404).json({
