@@ -817,21 +817,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Interactive Code Playground Section */}
-      <section className="animate-section py-20 px-4 bg-card/20">
-        <CodePlayground />
-      </section>
-
-      {/* Progress Dashboard Section */}
-      <section className="animate-section py-20 px-4">
-        <ProgressDashboard />
-      </section>
-
-      {/* AI Code Assistant Section */}
-      <section className="animate-section py-20 px-4 bg-card/20">
-        <AICodeAssistant />
-      </section>
-
       {/* Final CTA Section */}
       <section className="animate-section py-20 px-4">
         <div className="container max-w-4xl mx-auto text-center">
@@ -841,8 +826,8 @@ export default function Index() {
             </span>
           </h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Join our advanced learning platform with interactive tools, progress
-            tracking, and AI assistance.
+            Join GenZ Coding School and transform your career with our
+            comprehensive frontend development bootcamp.
           </p>
 
           <Button
