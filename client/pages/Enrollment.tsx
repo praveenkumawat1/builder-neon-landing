@@ -254,15 +254,33 @@ export default function Enrollment() {
         selectedPlan: selectedPlan as "starter" | "pro" | "elite",
       };
 
-      const response = await fetch("/api/enrollment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(basicEnrollmentData),
-      });
+      let response;
+      let result;
 
-      const result = await response.json();
+      try {
+        response = await fetch("/api/enrollment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(basicEnrollmentData),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        result = await response.json();
+      } catch (fetchError) {
+        console.error("Basic enrollment error:", fetchError);
+        setIsSubmitting(false);
+        toast({
+          title: "Network Error",
+          description: "Failed to submit enrollment. Please try again.",
+          variant: "destructive",
+        });
+        return;
+      }
 
       if (result.success) {
         setShowPayment(true);
