@@ -179,7 +179,7 @@ export function LoadingScreen() {
           <div className="mb-6 font-mono text-xs text-neon-cyan">
             <pre className="whitespace-pre leading-tight">
               {`  ███████╗██████╗   ██████╗  ██████╗ ████████╗ ██████╗ █████╗ ███╗   ███╗██████╗
-  ██╔════╝██╔══██╗ ██╔═══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██╔══██╗
+  ██╔════╝██╔══██╗ ██╔═══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══��█╗████╗ ████║██╔══██╗
   █████╗  ██████╔╝ ██║   ██║██║   ██║   ██║   ██║     ███████║██╔████╔██║██████╔╝
   ██╔══╝  ██╔══██╗ ██║   ██║██║   ██║   ██║   ██║     ██╔══██║██║╚██╔╝██║██╔═══╝
   ██║     ██████╔╝ ╚██████╔╝╚██████╔╝   ██║   ╚██████╗██║  ██║██║ ╚═╝ ██║██║
@@ -286,7 +286,10 @@ export function LoadingScreen() {
             style={{
               left: `${10 + i * 12}%`,
               top: `${20 + (i % 3) * 20}%`,
-              animation: `floatAnimation ${3 + Math.random() * 2}s ease-in-out infinite`,
+              animationName: "floatAnimation",
+              animationDuration: `${3 + Math.random() * 2}s`,
+              animationTimingFunction: "ease-in-out",
+              animationIterationCount: "infinite",
               animationDelay: `${i * 0.5}s`,
             }}
           >
