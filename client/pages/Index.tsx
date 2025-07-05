@@ -235,14 +235,11 @@ export default function Index() {
             </Button>
           </div>
 
-          <div className="countdown-container glass rounded-3xl p-8 max-w-2xl mx-auto backdrop-blur-lg border border-neon-cyan/30">
-            <p className="text-neon-yellow font-bold mb-4 text-lg font-cyber">
-              ⚡ LEGENDARY DEAL EXPIRES SOON ⚡
+          <div className="countdown-container">
+            <p className="text-sm text-muted-foreground mb-4">
+              ⏰ Offer valid till July 10
             </p>
             <CountdownTimer targetDate={targetDate} />
-            <p className="text-gray-400 mt-4 text-sm">
-              Join 1000+ GenZ Coders who are already building the future! 🌟
-            </p>
           </div>
         </div>
       </section>
