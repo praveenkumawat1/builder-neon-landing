@@ -93,6 +93,7 @@ export default function Enrollment() {
 
     // Prevent duplicate submissions
     if (isSubmitting) {
+      console.log("Submission already in progress, preventing duplicate");
       return;
     }
 
@@ -107,6 +108,9 @@ export default function Enrollment() {
     }
 
     setIsSubmitting(true);
+
+    // Add a small delay to prevent rapid duplicate submissions
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     try {
       // For demo, submit to database and navigate to thanks page
