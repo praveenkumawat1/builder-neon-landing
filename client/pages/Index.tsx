@@ -629,17 +629,38 @@ export default function Index() {
       </section>
 
       {/* Pricing Section */}
-      <section className="animate-section py-20 px-4" data-section="pricing">
-        <div className="container max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-neon-green to-neon-cyan text-transparent bg-clip-text">
-              Choose Your Plan
-            </span>
-          </h2>
-          <p className="text-xl text-muted-foreground mb-16 max-w-3xl mx-auto">
-            Select the perfect plan for your learning journey. All plans include
-            lifetime access!
-          </p>
+      <section
+        className="animate-section py-24 px-4 relative"
+        data-section="pricing"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-neon-green/5 via-transparent to-neon-purple/5"></div>
+        <div className="container max-w-7xl mx-auto text-center relative z-10">
+          <div className="mb-20">
+            <h2 className="text-5xl md:text-7xl font-black mb-6 font-cyber">
+              <span className="gradient-text">PICK YOUR</span>
+              <br />
+              <span className="text-neon-green">POWER LEVEL 💪</span>
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-4xl mx-auto">
+              Every plan gets you{" "}
+              <span className="text-neon-cyan font-bold">LIFETIME ACCESS</span>{" "}
+              •
+              <span className="text-neon-pink font-bold">
+                {" "}
+                ZERO HIDDEN FEES
+              </span>{" "}
+              •
+              <span className="text-neon-yellow font-bold">
+                {" "}
+                100% JOB-READY SKILLS
+              </span>
+            </p>
+            <div className="glass rounded-2xl p-6 max-w-2xl mx-auto border border-neon-green/30">
+              <p className="text-neon-green font-bold text-lg font-cyber">
+                🔥 LIMITED TIME: 70% OFF EVERYTHING! 🔥
+              </p>
+            </div>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Starter Plan */}
