@@ -766,6 +766,9 @@ export default function Enrollment() {
           </div>
         </div>
       </div>
+
+      {/* Support ChatBot */}
+      <ChatBot />
     </div>
   );
 }
