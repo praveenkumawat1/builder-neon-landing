@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
   /**
-   * GenZ Coding School Theme - Dark Mode Only
+   * GenZ Coding School Theme - Dark Mode Only 🚀
    */
   :root {
     --background: 224 71% 4%;
@@ -39,7 +39,7 @@
 
     --radius: 1rem;
 
-    /* GenZ Neon Colors - More Vibrant */
+    /* GenZ Neon Colors - Ultra Vibrant 🎨 */
     --neon-cyan: 180 100% 50%;
     --neon-purple: 270 100% 70%;
     --neon-pink: 320 100% 70%;
@@ -48,120 +48,11 @@
     --neon-orange: 30 100% 50%;
     --neon-blue: 220 100% 60%;
 
-    /* GenZ Gradient Combinations */
-    --gradient-primary: linear-gradient(135deg, #00d4ff 0%, #ff00ff 50%, #ffff00 100%);
-    --gradient-secondary: linear-gradient(135deg, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
-    --gradient-accent: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --gradient-neon: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
-    --gradient-cyber: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
-
-    /* Glassmorphism */
+    /* Glassmorphism Variables */
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-backdrop: blur(10px);
-  }
 
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground font-sans;
-    background: var(--gradient-cyber);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-    overflow-x: hidden;
-  }
-
-  /* Animated Background */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-      radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-      radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.3) 0%, transparent 50%);
-    z-index: -2;
-    animation: backgroundFloat 20s ease-in-out infinite;
-  }
-
-  @keyframes backgroundFloat {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
-  /* Cyber Grid Background */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    z-index: -1;
-    animation: gridMove 30s linear infinite;
-  }
-
-  @keyframes gridMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
-  }
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 263 70% 50%;
-  }
-
-  /**
-   * Dark mode theme
-   */
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 263 70% 50%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 263 70% 50%;
-
-    /* Neon colors for accents and highlights */
-    --neon-cyan: 180 100% 50%;
-    --neon-purple: 263 70% 50%;
-    --neon-pink: 320 100% 50%;
-    --neon-green: 120 100% 50%;
-
+    /* Sidebar variables */
     --sidebar-background: 224 71.4% 4.1%;
     --sidebar-foreground: 210 40% 98%;
     --sidebar-primary: 263 70% 50%;
@@ -171,58 +62,365 @@
     --sidebar-border: 215 27.9% 16.9%;
     --sidebar-ring: 263 70% 50%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      "Roboto",
+      sans-serif;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+    position: relative;
   }
 
-  /* Custom scrollbar for dark theme */
+  /* Cyber Grid Background Animation */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -2;
+    animation: gridMove 30s linear infinite;
+  }
+
+  @keyframes gridMove {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(50px, 50px);
+    }
+  }
+
+  /* Floating Orbs Background */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+      radial-gradient(
+        circle at 20% 50%,
+        rgba(0, 212, 255, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 0, 255, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(255, 255, 0, 0.15) 0%,
+        transparent 50%
+      );
+    z-index: -1;
+    animation: orbFloat 20s ease-in-out infinite;
+  }
+
+  @keyframes orbFloat {
+    0%,
+    100% {
+      transform: translateY(0px) scale(1);
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      transform: translateY(-30px) scale(1.1);
+      filter: hue-rotate(90deg);
+    }
+  }
+
+  /* Custom Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
   }
 
   ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: hsl(var(--neon-purple));
-    border-radius: 4px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-cyan)),
+      hsl(var(--neon-purple))
+    );
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--neon-cyan));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-pink)),
+      hsl(var(--neon-yellow))
+    );
   }
 
-  /* Glow effects for neon elements */
+  /* Glassmorphism Effects */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-hover {
+    transition: all 0.3s ease;
+  }
+
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Neon Glow Effects */
   .glow-cyan {
-    box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3);
+    box-shadow:
+      0 0 20px hsl(var(--neon-cyan) / 0.5),
+      0 0 40px hsl(var(--neon-cyan) / 0.3),
+      0 0 60px hsl(var(--neon-cyan) / 0.1);
   }
 
   .glow-purple {
-    box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.3);
+    box-shadow:
+      0 0 20px hsl(var(--neon-purple) / 0.5),
+      0 0 40px hsl(var(--neon-purple) / 0.3),
+      0 0 60px hsl(var(--neon-purple) / 0.1);
   }
 
   .glow-pink {
-    box-shadow: 0 0 20px hsl(var(--neon-pink) / 0.3);
+    box-shadow:
+      0 0 20px hsl(var(--neon-pink) / 0.5),
+      0 0 40px hsl(var(--neon-pink) / 0.3),
+      0 0 60px hsl(var(--neon-pink) / 0.1);
   }
 
-  /* Float animation for loading screen */
-  @keyframes floatAnimation {
+  .glow-green {
+    box-shadow:
+      0 0 20px hsl(var(--neon-green) / 0.5),
+      0 0 40px hsl(var(--neon-green) / 0.3),
+      0 0 60px hsl(var(--neon-green) / 0.1);
+  }
+
+  .glow-yellow {
+    box-shadow:
+      0 0 20px hsl(var(--neon-yellow) / 0.5),
+      0 0 40px hsl(var(--neon-yellow) / 0.3),
+      0 0 60px hsl(var(--neon-yellow) / 0.1);
+  }
+
+  /* Gradient Text Effects */
+  .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-cyan)),
+      hsl(var(--neon-purple)),
+      hsl(var(--neon-pink))
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease-in-out infinite;
+  }
+
+  @keyframes gradientShift {
+    0%,
+    100% {
+      filter: hue-rotate(0deg);
+    }
+    50% {
+      filter: hue-rotate(90deg);
+    }
+  }
+
+  /* Cyber Typography */
+  .font-cyber {
+    font-family: "Orbitron", "JetBrains Mono", monospace;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .font-code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+  }
+
+  /* Floating Animation */
+  @keyframes float {
     0%,
     100% {
       transform: translateY(0px) rotate(0deg);
-      opacity: 0.3;
     }
     50% {
       transform: translateY(-20px) rotate(5deg);
-      opacity: 0.8;
     }
+  }
+
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Pulse Glow Animation */
+  @keyframes pulseGlow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(var(--neon-cyan) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--neon-cyan) / 0.8);
+    }
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  /* Holographic Effect */
+  .holographic {
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    background-size: 250% 250%;
+    animation: holographicShine 3s ease-in-out infinite;
+  }
+
+  @keyframes holographicShine {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Matrix Rain Effect */
+  .matrix-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Neon Border Animation */
+  @keyframes neonBorder {
+    0%,
+    100% {
+      border-color: hsl(var(--neon-cyan));
+      box-shadow: 0 0 10px hsl(var(--neon-cyan) / 0.5);
+    }
+    25% {
+      border-color: hsl(var(--neon-purple));
+      box-shadow: 0 0 10px hsl(var(--neon-purple) / 0.5);
+    }
+    50% {
+      border-color: hsl(var(--neon-pink));
+      box-shadow: 0 0 10px hsl(var(--neon-pink) / 0.5);
+    }
+    75% {
+      border-color: hsl(var(--neon-green));
+      box-shadow: 0 0 10px hsl(var(--neon-green) / 0.5);
+    }
+  }
+
+  .neon-border {
+    animation: neonBorder 4s ease-in-out infinite;
+  }
+
+  /* Button Hover Effects */
+  .btn-cyber {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--neon-cyan)),
+      hsl(var(--neon-purple))
+    );
+    transition: all 0.3s ease;
+  }
+
+  .btn-cyber::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  .btn-cyber:hover::before {
+    left: 100%;
+  }
+
+  /* Loading Spinner */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .spin {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@layer components {
+  /* GenZ Card Styles */
+  .card-genZ {
+    @apply glass glass-hover rounded-2xl p-6 border-2;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 212, 255, 0.1),
+      rgba(255, 0, 255, 0.1)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* GenZ Button Styles */
+  .btn-genZ {
+    @apply btn-cyber px-6 py-3 rounded-xl font-bold text-white transition-all duration-300;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-genZ:hover {
+    @apply glow-cyan scale-105;
+    transform: translateY(-2px) scale(1.05);
   }
 }
