@@ -200,11 +200,11 @@ export default function Index() {
           <div className="hero-title mb-6">
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
               <span className="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink text-transparent bg-clip-text">
-                🚀 GenZ Coding School
+                GenZ Coding School
               </span>
               <br />
               <span className="text-foreground">
-                Master Frontend in 21 Days!
+                Master Frontend Development in 21 Days
               </span>
             </h1>
           </div>
