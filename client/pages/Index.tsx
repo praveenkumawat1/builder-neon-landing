@@ -216,22 +216,22 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="hero-buttons mb-12 flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="hero-buttons mb-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
               onClick={() => navigate("/enrollment?type=join&plan=starter")}
-              className="btn-genZ glow-purple text-xl px-12 py-6 rounded-2xl bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan hover:scale-110 transform transition-all duration-300 font-cyber"
+              className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300"
             >
-              🚀 START CODING - ₹99
+              Join Now Starting ₹99
             </Button>
             <Button
               variant="outline"
               size="lg"
               onClick={() => navigate("/enrollment?type=demo")}
-              className="glass neon-border text-neon-cyan hover:bg-neon-cyan/20 font-bold px-10 py-6 text-lg transition-all duration-300 rounded-2xl font-cyber"
+              className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background font-semibold px-8 py-4 text-lg transition-all duration-300"
             >
-              <Play className="w-6 h-6 mr-3" />
-              FREE DEMO 🎯
+              <Play className="w-5 h-5 mr-2" />
+              Get a Free Demo
             </Button>
           </div>
 
