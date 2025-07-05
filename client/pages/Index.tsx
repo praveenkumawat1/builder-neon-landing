@@ -237,7 +237,7 @@ export default function Index() {
 
           <div className="countdown-container">
             <p className="text-sm text-muted-foreground mb-4">
-              ⏰ Offer valid till July 10
+              Offer valid till July 10
             </p>
             <CountdownTimer targetDate={targetDate} />
           </div>
