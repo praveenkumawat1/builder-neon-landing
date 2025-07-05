@@ -192,18 +192,6 @@ export default function TotalFees() {
                   <span>₹{basePrice}</span>
                 </div>
 
-                {appliedCoupon && (
-                  <div className="flex justify-between text-green-600">
-                    <span>Discount ({appliedCoupon.code})</span>
-                    <span>-₹{discountAmount.toFixed(0)}</span>
-                  </div>
-                )}
-
-                <div className="flex justify-between">
-                  <span>Subtotal</span>
-                  <span>₹{discountedPrice.toFixed(0)}</span>
-                </div>
-
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span className="flex items-center gap-1">
                     <Percent className="w-3 h-3" />
@@ -223,9 +211,6 @@ export default function TotalFees() {
               <div className="text-xs text-muted-foreground bg-gray-50 p-3 rounded">
                 <p className="font-medium mb-1">Pricing Details:</p>
                 <p>• Base Price: ₹{basePrice}</p>
-                {appliedCoupon && (
-                  <p>• Discount: -₹{discountAmount.toFixed(0)}</p>
-                )}
                 <p>• GST (18%): ₹{gstAmount.toFixed(0)}</p>
                 <p className="font-medium mt-1">
                   Final Total: ₹{totalAmount.toFixed(0)}
