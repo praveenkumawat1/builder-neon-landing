@@ -198,34 +198,21 @@ export default function Index() {
 
         <div className="container max-w-6xl mx-auto text-center relative z-10">
           <div className="hero-title mb-6">
-            <div className="mb-4">
-              <span className="font-cyber text-lg md:text-xl text-neon-cyan bg-black/20 px-4 py-2 rounded-full border border-neon-cyan/30 backdrop-blur-sm">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-pink text-transparent bg-clip-text">
                 🚀 GenZ Coding School
               </span>
-            </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
-              <span className="gradient-text font-cyber">Code Like a</span>
               <br />
-              <span className="text-neon-yellow glow-yellow font-cyber">
-                LEGEND 💻
+              <span className="text-foreground">
+                Master Frontend in 21 Days!
               </span>
             </h1>
-            <div className="text-2xl md:text-3xl font-bold text-neon-pink mb-4">
-              ⚡ 21-Day Elite Bootcamp ⚡
-            </div>
           </div>
 
           <div className="hero-subtitle mb-8">
-            <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-medium">
-              <span className="text-neon-cyan">HTML5</span> •
-              <span className="text-neon-purple">CSS3</span> •
-              <span className="text-neon-pink">JavaScript</span> •
-              <span className="text-neon-green">Tailwind</span> •
-              <span className="text-neon-yellow">GSAP</span>
-            </p>
-            <p className="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-              From Zero to Hero in 21 Days | Build Epic Projects | Get Job-Ready
-              Skills
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Learn HTML, CSS, JavaScript, Tailwind & GSAP with hands-on
+              projects
             </p>
           </div>
 
