@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { isAdminAuthenticated, logoutAdmin } from "@/lib/auth";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { AdvancedAnalytics } from "@/components/AdvancedAnalytics";
+import { UserManagement } from "@/components/UserManagement";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Card,
   CardContent,
@@ -74,6 +77,7 @@ export default function Admin() {
   const [loading, setLoading] = useState(true);
   const [selectedEnrollment, setSelectedEnrollment] =
     useState<EnrollmentData | null>(null);
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Check authentication on component mount
   useEffect(() => {
@@ -293,223 +297,290 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* Stats Cards */}
-        {stats && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <Card className="bg-card/80 border-border">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Total Enrollments
-                </CardTitle>
-                <Users className="h-4 w-4 text-neon-cyan" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stats.total}</div>
-              </CardContent>
-            </Card>
+        {/* Advanced Tabbed Interface */}
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-6"
+        >
+          <TabsList className="grid w-full grid-cols-4 bg-card/50 border border-border">
+            <TabsTrigger
+              value="overview"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-neon-cyan data-[state=active]:to-neon-purple data-[state=active]:text-white"
+            >
+              Overview
+            </TabsTrigger>
+            <TabsTrigger
+              value="analytics"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-neon-purple data-[state=active]:to-neon-pink data-[state=active]:text-white"
+            >
+              Analytics
+            </TabsTrigger>
+            <TabsTrigger
+              value="users"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-neon-green data-[state=active]:to-neon-cyan data-[state=active]:text-white"
+            >
+              Users
+            </TabsTrigger>
+            <TabsTrigger
+              value="settings"
+              className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-neon-pink data-[state=active]:to-neon-purple data-[state=active]:text-white"
+            >
+              Settings
+            </TabsTrigger>
+          </TabsList>
 
-            <Card className="bg-card/80 border-border">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Demo Requests
-                </CardTitle>
-                <BookOpen className="h-4 w-4 text-neon-green" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stats.demos}</div>
-              </CardContent>
-            </Card>
+          {/* Overview Tab */}
+          <TabsContent value="overview" className="space-y-6">
+            {/* Quick Stats */}
+            {stats && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <Card className="bg-gradient-to-br from-neon-cyan/10 to-neon-cyan/5 border-neon-cyan/20">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Total Enrollments
+                    </CardTitle>
+                    <Users className="h-4 w-4 text-neon-cyan" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats.total}</div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      +{stats.last7Days} this week
+                    </p>
+                  </CardContent>
+                </Card>
 
-            <Card className="bg-card/80 border-border">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Paid Enrollments
-                </CardTitle>
-                <CreditCard className="h-4 w-4 text-neon-purple" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stats.paid}</div>
-              </CardContent>
-            </Card>
+                <Card className="bg-gradient-to-br from-neon-green/10 to-neon-green/5 border-neon-green/20">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Demo Requests
+                    </CardTitle>
+                    <BookOpen className="h-4 w-4 text-neon-green" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats.demos}</div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {stats.conversionRate}% conversion rate
+                    </p>
+                  </CardContent>
+                </Card>
 
-            <Card className="bg-card/80 border-border">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Pending Payments
-                </CardTitle>
-                <Clock className="h-4 w-4 text-neon-pink" />
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{stats.pending}</div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
+                <Card className="bg-gradient-to-br from-neon-purple/10 to-neon-purple/5 border-neon-purple/20">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Paid Students
+                    </CardTitle>
+                    <CreditCard className="h-4 w-4 text-neon-purple" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats.paid}</div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      ₹{(stats.paid * 199).toLocaleString()} revenue
+                    </p>
+                  </CardContent>
+                </Card>
 
-        {/* Plan Breakdown */}
-        {stats && Object.keys(stats.planBreakdown).length > 0 && (
-          <Card className="bg-card/80 border-border mb-8">
-            <CardHeader>
-              <CardTitle>Plan Distribution</CardTitle>
-              <CardDescription>
-                Breakdown of enrollments by plan type
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex gap-4">
-                {Object.entries(stats.planBreakdown).map(([plan, count]) => (
-                  <div key={plan} className="text-center">
-                    <Badge className={getPlanColor(plan)}>
-                      {plan.charAt(0).toUpperCase() + plan.slice(1)}
-                    </Badge>
-                    <div className="text-2xl font-bold mt-2">{count}</div>
-                  </div>
-                ))}
+                <Card className="bg-gradient-to-br from-neon-pink/10 to-neon-pink/5 border-neon-pink/20">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">
+                      Pending Payments
+                    </CardTitle>
+                    <Clock className="h-4 w-4 text-neon-pink" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-2xl font-bold">{stats.pending}</div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Awaiting completion
+                    </p>
+                  </CardContent>
+                </Card>
               </div>
-            </CardContent>
-          </Card>
-        )}
-
-        {/* Enrollments Table */}
-        <Card className="bg-card/80 border-border">
-          <CardHeader className="flex flex-row items-center justify-between">
-            <div>
-              <CardTitle>Recent Enrollments</CardTitle>
-              <CardDescription>
-                All enrollment submissions ({enrollments.length} total)
-              </CardDescription>
-            </div>
-
-            {enrollments.length > 0 && (
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="destructive" size="sm">
-                    <Trash2 className="w-4 h-4 mr-2" />
-                    Clear All Data
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This action cannot be undone. This will permanently delete
-                      all enrollment data from memory.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={clearAllData}>
-                      Delete All Data
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
             )}
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <div className="text-center py-8">
-                <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-neon-cyan" />
-                <p className="text-muted-foreground">
-                  Loading enrollment data...
-                </p>
-              </div>
-            ) : enrollments.length === 0 ? (
-              <div className="text-center py-8">
-                <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
-                <p className="text-muted-foreground">No enrollments found</p>
-                <p className="text-sm text-muted-foreground/70">
-                  Enrollment submissions will appear here
-                </p>
-              </div>
-            ) : (
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Student Info</TableHead>
-                      <TableHead>Type</TableHead>
-                      <TableHead>Plan</TableHead>
-                      <TableHead>Payment</TableHead>
-                      <TableHead>Transaction ID</TableHead>
-                      <TableHead>Created</TableHead>
-                      <TableHead>Actions</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {enrollments.map((enrollment) => (
-                      <TableRow key={enrollment.id}>
-                        <TableCell>
-                          <div>
-                            <div className="font-medium">{enrollment.name}</div>
-                            <div className="text-sm text-muted-foreground">
-                              {enrollment.email}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              {enrollment.phone}
-                            </div>
+
+            {/* Recent Enrollments */}
+            <Card className="bg-card/80 border-border">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <div>
+                  <CardTitle>Recent Enrollments</CardTitle>
+                  <CardDescription>
+                    Latest 10 enrollment submissions
+                  </CardDescription>
+                </div>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setActiveTab("users")}
+                  className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background"
+                >
+                  View All Users
+                </Button>
+              </CardHeader>
+              <CardContent>
+                {loading ? (
+                  <div className="text-center py-8">
+                    <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4 text-neon-cyan" />
+                    <p className="text-muted-foreground">Loading data...</p>
+                  </div>
+                ) : enrollments.length === 0 ? (
+                  <div className="text-center py-8">
+                    <Users className="w-12 h-12 mx-auto mb-4 text-muted-foreground/50" />
+                    <p className="text-muted-foreground">
+                      No enrollments found
+                    </p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {enrollments.slice(0, 10).map((enrollment) => (
+                      <div
+                        key={enrollment.id}
+                        className="flex items-center justify-between p-4 bg-background/50 rounded-lg border border-border hover:border-neon-cyan/50 transition-colors"
+                      >
+                        <div className="flex-1">
+                          <div className="font-medium">{enrollment.name}</div>
+                          <div className="text-sm text-muted-foreground">
+                            {enrollment.email}
                           </div>
-                        </TableCell>
-                        <TableCell>
-                          <Badge
-                            variant="outline"
-                            className={
-                              enrollment.enrollmentType === "demo"
-                                ? "border-neon-green text-neon-green"
-                                : "border-neon-purple text-neon-purple"
-                            }
-                          >
-                            {enrollment.enrollmentType}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
+                        </div>
+                        <div className="flex items-center gap-2">
                           <Badge
                             className={getPlanColor(enrollment.selectedPlan)}
                           >
                             {enrollment.selectedPlan}
                           </Badge>
-                        </TableCell>
-                        <TableCell>
                           <Badge
                             className={getStatusColor(enrollment.paymentStatus)}
                           >
                             {enrollment.paymentStatus}
                           </Badge>
-                        </TableCell>
-                        <TableCell>
-                          <span className="text-sm font-mono">
-                            {enrollment.transactionId || "-"}
-                          </span>
-                        </TableCell>
-                        <TableCell>
-                          <div className="text-sm">
-                            {new Date(
-                              enrollment.createdAt,
-                            ).toLocaleDateString()}
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            {new Date(
-                              enrollment.createdAt,
-                            ).toLocaleTimeString()}
-                          </div>
-                        </TableCell>
-                        <TableCell>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => setSelectedEnrollment(enrollment)}
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                        </TableCell>
-                      </TableRow>
+                        </div>
+                      </div>
                     ))}
-                  </TableBody>
-                </Table>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Analytics Tab */}
+          <TabsContent value="analytics">
+            {stats && <AdvancedAnalytics data={stats} onRefresh={fetchData} />}
+          </TabsContent>
+
+          {/* Users Tab */}
+          <TabsContent value="users">
+            <UserManagement enrollments={enrollments} onRefresh={fetchData} />
+          </TabsContent>
+
+          {/* Settings Tab */}
+          <TabsContent value="settings" className="space-y-6">
+            <Card className="bg-card/80 border-border">
+              <CardHeader>
+                <CardTitle>Data Management</CardTitle>
+                <CardDescription>
+                  Manage your enrollment data and system settings
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between p-4 bg-background/50 rounded-lg border border-border">
+                  <div>
+                    <h3 className="font-medium">Export All Data</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Download complete enrollment database as JSON
+                    </p>
+                  </div>
+                  <Button
+                    onClick={exportToCSV}
+                    className="bg-gradient-to-r from-neon-cyan to-neon-purple hover:from-neon-cyan/80 hover:to-neon-purple/80"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Export
+                  </Button>
+                </div>
+
+                <div className="flex items-center justify-between p-4 bg-background/50 rounded-lg border border-border">
+                  <div>
+                    <h3 className="font-medium">Clear All Data</h3>
+                    <p className="text-sm text-muted-foreground">
+                      Permanently delete all enrollment records
+                    </p>
+                  </div>
+                  {enrollments.length > 0 && (
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="destructive">
+                          <Trash2 className="w-4 h-4 mr-2" />
+                          Clear Data
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>
+                            Are you absolutely sure?
+                          </AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            delete all {enrollments.length} enrollment records
+                            from storage.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={clearAllData}>
+                            Delete All Data
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  )}
+                </div>
+
+                <div className="p-4 bg-gradient-to-r from-neon-purple/10 to-neon-pink/10 rounded-lg border border-neon-purple/20">
+                  <h3 className="font-medium mb-2">Storage Information</h3>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-muted-foreground">
+                        Storage Type:
+                      </span>
+                      <span className="ml-2 font-medium">Local Storage</span>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">
+                        Total Records:
+                      </span>
+                      <span className="ml-2 font-medium">
+                        {enrollments.length}
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">
+                        Data Persistence:
+                      </span>
+                      <span className="ml-2 font-medium text-green-400">
+                        Permanent
+                      </span>
+                    </div>
+                    <div>
+                      <span className="text-muted-foreground">
+                        Last Updated:
+                      </span>
+                      <span className="ml-2 font-medium">
+                        {enrollments.length > 0
+                          ? new Date(
+                              Math.max(
+                                ...enrollments.map((e) =>
+                                  new Date(e.updatedAt).getTime(),
+                                ),
+                              ),
+                            ).toLocaleString()
+                          : "Never"}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
 
         {/* Enrollment Details Modal */}
         {selectedEnrollment && (

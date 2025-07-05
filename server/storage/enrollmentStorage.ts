@@ -1,5 +1,5 @@
-// Temporary in-memory storage for enrollments
-// This will be replaced with online database later
+// Persistent storage for enrollments using localStorage
+// Data is permanently saved across browser sessions
 
 export interface EnrollmentData {
   id: string;
@@ -15,10 +15,34 @@ export interface EnrollmentData {
   paymentStatus: "pending" | "completed";
   createdAt: string;
   updatedAt: string;
+  ipAddress?: string;
+  userAgent?: string;
+  source?: string;
 }
 
-// In-memory storage
-let enrollments: EnrollmentData[] = [];
+const STORAGE_KEY = "frontend_bootcamp_enrollments";
+
+// Get enrollments from localStorage
+const getStoredEnrollments = (): EnrollmentData[] => {
+  if (typeof window === "undefined") return [];
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+  } catch (error) {
+    console.error("Error reading from localStorage:", error);
+    return [];
+  }
+};
+
+// Save enrollments to localStorage
+const saveEnrollments = (enrollments: EnrollmentData[]): void => {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(enrollments));
+  } catch (error) {
+    console.error("Error saving to localStorage:", error);
+  }
+};
 
 export class EnrollmentStorage {
   static create(
@@ -27,6 +51,8 @@ export class EnrollmentStorage {
       "id" | "createdAt" | "updatedAt" | "paymentStatus"
     >,
   ): EnrollmentData {
+    const enrollments = getStoredEnrollments();
+
     const enrollment: EnrollmentData = {
       ...data,
       id: `ENR_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
@@ -38,32 +64,42 @@ export class EnrollmentStorage {
             : "pending",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      ipAddress: data.ipAddress || "unknown",
+      userAgent: data.userAgent || "unknown",
+      source: data.source || "direct",
     };
 
     enrollments.push(enrollment);
+    saveEnrollments(enrollments);
     console.log(
-      `📝 New enrollment stored: ${enrollment.email} (${enrollment.enrollmentType})`,
+      `📝 New enrollment permanently stored: ${enrollment.email} (${enrollment.enrollmentType})`,
     );
     return enrollment;
   }
 
   static findByEmail(email: string): EnrollmentData | null {
+    const enrollments = getStoredEnrollments();
     return enrollments.find((e) => e.email === email) || null;
   }
 
   static updateTransaction(email: string, transactionId: string): boolean {
+    const enrollments = getStoredEnrollments();
     const enrollment = enrollments.find((e) => e.email === email);
     if (enrollment) {
       enrollment.transactionId = transactionId;
       enrollment.paymentStatus = "completed";
       enrollment.updatedAt = new Date().toISOString();
-      console.log(`💳 Transaction updated: ${email} - ${transactionId}`);
+      saveEnrollments(enrollments);
+      console.log(
+        `💳 Transaction updated permanently: ${email} - ${transactionId}`,
+      );
       return true;
     }
     return false;
   }
 
   static getAll(): EnrollmentData[] {
+    const enrollments = getStoredEnrollments();
     return [...enrollments].sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
@@ -71,6 +107,7 @@ export class EnrollmentStorage {
   }
 
   static getStats() {
+    const enrollments = getStoredEnrollments();
     const total = enrollments.length;
     const demos = enrollments.filter((e) => e.enrollmentType === "demo").length;
     const paid = enrollments.filter(
@@ -90,17 +127,58 @@ export class EnrollmentStorage {
         {} as Record<string, number>,
       );
 
+    // Advanced analytics
+    const today = new Date();
+    const last7Days = enrollments.filter((e) => {
+      const enrollDate = new Date(e.createdAt);
+      const diffTime = today.getTime() - enrollDate.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays <= 7;
+    }).length;
+
+    const last30Days = enrollments.filter((e) => {
+      const enrollDate = new Date(e.createdAt);
+      const diffTime = today.getTime() - enrollDate.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays <= 30;
+    }).length;
+
     return {
       total,
       demos,
       paid,
       pending,
       planBreakdown,
+      last7Days,
+      last30Days,
+      conversionRate: demos > 0 ? Math.round((paid / demos) * 100) : 0,
+      averageValue: paid > 0 ? Math.round((paid * 199) / paid) : 0, // Assuming average plan price
     };
   }
 
   static clear(): void {
-    enrollments = [];
-    console.log("🗑️ All enrollment data cleared");
+    if (typeof window !== "undefined") {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+    console.log("🗑️ All enrollment data permanently cleared");
+  }
+
+  static exportData(): string {
+    const enrollments = getStoredEnrollments();
+    return JSON.stringify(enrollments, null, 2);
+  }
+
+  static importData(jsonData: string): boolean {
+    try {
+      const data = JSON.parse(jsonData);
+      if (Array.isArray(data)) {
+        saveEnrollments(data);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Error importing data:", error);
+      return false;
+    }
   }
 }
