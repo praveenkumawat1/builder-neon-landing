@@ -1,5 +1,5 @@
-// Persistent storage for enrollments using localStorage
-// Data is permanently saved across browser sessions
+// In-memory storage for enrollments on the server
+// Data is stored in memory during server runtime
 
 export interface EnrollmentData {
   id: string;
@@ -20,28 +20,17 @@ export interface EnrollmentData {
   source?: string;
 }
 
-const STORAGE_KEY = "frontend_bootcamp_enrollments";
+// In-memory storage
+let enrollments: EnrollmentData[] = [];
 
-// Get enrollments from localStorage
+// Get enrollments from memory
 const getStoredEnrollments = (): EnrollmentData[] => {
-  if (typeof window === "undefined") return [];
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch (error) {
-    console.error("Error reading from localStorage:", error);
-    return [];
-  }
+  return [...enrollments]; // Return a copy to prevent direct modification
 };
 
-// Save enrollments to localStorage
-const saveEnrollments = (enrollments: EnrollmentData[]): void => {
-  if (typeof window === "undefined") return;
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(enrollments));
-  } catch (error) {
-    console.error("Error saving to localStorage:", error);
-  }
+// Save enrollments to memory
+const saveEnrollments = (updatedEnrollments: EnrollmentData[]): void => {
+  enrollments = [...updatedEnrollments];
 };
 
 export class EnrollmentStorage {
