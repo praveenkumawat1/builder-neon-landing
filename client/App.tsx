@@ -13,11 +13,6 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Apply dark mode to document
-if (typeof document !== "undefined") {
-  document.documentElement.classList.add("dark");
-}
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <Toaster />

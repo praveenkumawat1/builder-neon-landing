@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AdminLogin } from "@/components/AdminLogin";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { LoadingScreen } from "@/components/LoadingScreen";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -48,8 +50,20 @@ export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Simulate initial loading
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(loadingTimer);
+  }, []);
+
+  useEffect(() => {
+    if (isLoading) return;
+
     // Hero animations
     const tl = gsap.timeline();
 
@@ -148,21 +162,27 @@ export default function Index() {
     navigate("/admin");
   };
 
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
-    <div className="min-h-screen bg-background text-foreground dark">
+    <div className="min-h-screen bg-background text-foreground">
+      <ThemeToggle />
       {/* Floating Particles Background */}
       <div
         ref={particlesRef}
         className="fixed inset-0 overflow-hidden pointer-events-none z-0"
       >
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 15 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 bg-neon-cyan rounded-full opacity-20"
+            className="absolute w-2 h-2 bg-neon-cyan rounded-full opacity-30 animate-pulse"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${2 + Math.random() * 2}s`,
             }}
           />
         ))}

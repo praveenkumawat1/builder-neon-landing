@@ -4,10 +4,64 @@
 
 @layer base {
   /**
-   * Dark-mode only theme for Frontend Bootcamp Landing Page
-   * All colors are optimized for dark backgrounds with neon accents
-  */
+   * Light mode theme
+   */
   :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 263 70% 50%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 263 70% 50%;
+
+    --radius: 0.75rem;
+
+    /* Neon colors for accents and highlights */
+    --neon-cyan: 180 80% 40%;
+    --neon-purple: 263 70% 50%;
+    --neon-pink: 320 80% 45%;
+    --neon-green: 120 80% 40%;
+
+    /* Gradient colors */
+    --gradient-start: 263 70% 50%;
+    --gradient-middle: 280 100% 50%;
+    --gradient-end: 320 100% 50%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 263 70% 50%;
+  }
+
+  /**
+   * Dark mode theme
+   */
+  .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
@@ -36,18 +90,11 @@
     --input: 215 27.9% 16.9%;
     --ring: 263 70% 50%;
 
-    --radius: 0.75rem;
-
     /* Neon colors for accents and highlights */
     --neon-cyan: 180 100% 50%;
     --neon-purple: 263 70% 50%;
     --neon-pink: 320 100% 50%;
     --neon-green: 120 100% 50%;
-
-    /* Gradient colors */
-    --gradient-start: 263 70% 50%;
-    --gradient-middle: 280 100% 50%;
-    --gradient-end: 320 100% 50%;
 
     --sidebar-background: 224 71.4% 4.1%;
     --sidebar-foreground: 210 40% 98%;

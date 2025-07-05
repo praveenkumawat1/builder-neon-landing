@@ -27,6 +27,7 @@ import {
   ExternalLink,
   Sparkles,
 } from "lucide-react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Thanks() {
   const [searchParams] = useSearchParams();
@@ -100,7 +101,8 @@ export default function Thanks() {
   const selectedPlan = searchParams.get("plan") || "starter";
 
   return (
-    <div className="min-h-screen bg-background text-foreground dark">
+    <div className="min-h-screen bg-background text-foreground">
+      <ThemeToggle />
       {/* Celebration particles */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {Array.from({ length: 30 }).map((_, i) => (

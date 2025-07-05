@@ -317,7 +317,8 @@ export default function Enrollment() {
     planConfig[selectedPlan as keyof typeof planConfig] || planConfig.starter;
 
   return (
-    <div className="min-h-screen bg-background text-foreground dark">
+    <div className="min-h-screen bg-background text-foreground">
+      <ThemeToggle />
       {/* Background particles */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {Array.from({ length: 15 }).map((_, i) => (
