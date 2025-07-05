@@ -31,6 +31,7 @@ import {
   Clock,
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Enrollment() {
   const [searchParams] = useSearchParams();
