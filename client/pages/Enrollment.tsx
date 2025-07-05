@@ -32,6 +32,7 @@ import {
 } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ChatBot } from "@/components/ChatBot";
 
 export default function Enrollment() {
   const [searchParams] = useSearchParams();
