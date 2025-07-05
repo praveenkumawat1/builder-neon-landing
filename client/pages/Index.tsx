@@ -260,56 +260,97 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Why Join Section */}
-      <section className="animate-section py-20 px-4">
-        <div className="container max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-            <span className="bg-gradient-to-r from-neon-cyan to-neon-purple text-transparent bg-clip-text">
-              Why Join Our Bootcamp?
-            </span>
-          </h2>
+      {/* Why Choose GenZ Coding School Section */}
+      <section className="animate-section py-24 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/10 via-transparent to-neon-cyan/10"></div>
+        <div className="container max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 font-cyber">
+              <span className="gradient-text">WHY GENZ CODES</span>
+              <br />
+              <span className="text-neon-yellow">DIFFERENTLY? 🔥</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              We're not your typical boring bootcamp. We speak your language and
+              build for the future!
+            </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <BookOpen className="w-8 h-8" />,
-                text: "Learn with Projects",
+                icon: <Code className="w-10 h-10" />,
+                title: "Code Like TikTok 📱",
+                description:
+                  "Build viral web apps that your friends will actually use",
+                color: "cyan",
               },
               {
-                icon: <Monitor className="w-8 h-8" />,
-                text: "Live + Recorded Classes",
+                icon: <Zap className="w-10 h-10" />,
+                title: "Lightning Fast ⚡",
+                description:
+                  "Learn at Gen Z speed - no boring lectures, just pure coding",
+                color: "yellow",
               },
               {
-                icon: <Award className="w-8 h-8" />,
-                text: "Completion Certificate",
+                icon: <Users className="w-10 h-10" />,
+                title: "Squad Goals 👥",
+                description:
+                  "Join a community of 1000+ young developers crushing it",
+                color: "purple",
               },
               {
-                icon: <MessageCircle className="w-8 h-8" />,
-                text: "Daily WhatsApp Doubt Support",
+                icon: <MessageCircle className="w-10 h-10" />,
+                title: "24/7 Discord Vibes 💬",
+                description: "Get help faster than your WiFi loads Instagram",
+                color: "pink",
               },
               {
-                icon: <Users className="w-8 h-8" />,
-                text: "Affordable ₹99 Fee",
+                icon: <Award className="w-10 h-10" />,
+                title: "Flex Your Skills 🏆",
+                description:
+                  "Get certificates that actually look good on LinkedIn",
+                color: "green",
               },
               {
-                icon: <Globe className="w-8 h-8" />,
-                text: "Lifetime Community Access",
+                icon: <Smartphone className="w-10 h-10" />,
+                title: "Mobile-First Mindset 📱",
+                description:
+                  "Build for the screens we actually use - phones first!",
+                color: "cyan",
               },
             ].map((feature, index) => (
-              <div key={index} className="feature-card">
-                <Card className="bg-card/50 border-border/50 hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-lg hover:shadow-neon-cyan/10">
-                  <CardContent className="p-6 text-center">
-                    <div className="text-neon-cyan mb-4 flex justify-center">
-                      {feature.icon}
-                    </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-neon-green" />
-                      <span className="font-semibold">{feature.text}</span>
-                    </div>
-                  </CardContent>
-                </Card>
+              <div key={index} className="feature-card group">
+                <div className="card-genZ glow-cyan group-hover:glow-purple transition-all duration-500 hover:scale-105 transform">
+                  <div
+                    className={`text-neon-${feature.color} mb-6 flex justify-center glow-${feature.color} p-4 rounded-2xl bg-black/20`}
+                  >
+                    {feature.icon}
+                  </div>
+                  <h3 className="font-bold text-xl mb-4 font-cyber text-white">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {feature.description}
+                  </p>
+                  <div className="mt-6">
+                    <CheckCircle className="w-6 h-6 text-neon-green mx-auto pulse-glow" />
+                  </div>
+                </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-16">
+            <div className="glass rounded-3xl p-8 max-w-2xl mx-auto border border-neon-pink/30">
+              <p className="text-2xl font-bold text-neon-pink mb-4 font-cyber">
+                🚀 NO CAP - THIS IS THE FUTURE OF CODING EDUCATION!
+              </p>
+              <p className="text-gray-300">
+                Stop watching tutorials. Start building. Start flexing. Start
+                earning. 💰
+              </p>
+            </div>
           </div>
         </div>
       </section>
