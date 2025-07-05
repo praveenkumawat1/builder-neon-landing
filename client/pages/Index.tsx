@@ -6,6 +6,9 @@ import { AdminLogin } from "@/components/AdminLogin";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { ChatBot } from "@/components/ChatBot";
+import { CodePlayground } from "@/components/CodePlayground";
+import { ProgressDashboard } from "@/components/ProgressDashboard";
+import { AICodeAssistant } from "@/components/AICodeAssistant";
 import { Button } from "@/components/ui/button";
 import {
   Card,
