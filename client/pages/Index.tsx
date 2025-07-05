@@ -942,6 +942,9 @@ export default function Index() {
         onClose={() => setShowAdminLogin(false)}
         onLogin={handleAdminLogin}
       />
+
+      {/* Support ChatBot */}
+      <ChatBot />
     </div>
   );
 }
