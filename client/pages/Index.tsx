@@ -222,7 +222,7 @@ export default function Index() {
               onClick={() => navigate("/enrollment?type=join&plan=starter")}
               className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300"
             >
-              Join Now Starting ₹99
+              Join Now Starting ₹149
             </Button>
             <Button
               variant="outline"
