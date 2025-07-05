@@ -229,30 +229,33 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="hero-buttons mb-12 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="hero-buttons mb-12 flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button
               size="lg"
               onClick={() => navigate("/enrollment?type=join&plan=starter")}
-              className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300"
+              className="btn-genZ glow-purple text-xl px-12 py-6 rounded-2xl bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan hover:scale-110 transform transition-all duration-300 font-cyber"
             >
-              Join Now Starting ₹99
+              🚀 START CODING - ₹99
             </Button>
             <Button
               variant="outline"
               size="lg"
               onClick={() => navigate("/enrollment?type=demo")}
-              className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background font-semibold px-8 py-4 text-lg transition-all duration-300"
+              className="glass neon-border text-neon-cyan hover:bg-neon-cyan/20 font-bold px-10 py-6 text-lg transition-all duration-300 rounded-2xl font-cyber"
             >
-              <Play className="w-5 h-5 mr-2" />
-              Get a Free Demo
+              <Play className="w-6 h-6 mr-3" />
+              FREE DEMO 🎯
             </Button>
           </div>
 
-          <div className="countdown-container">
-            <p className="text-sm text-muted-foreground mb-4">
-              ⏰ Offer valid till July 10
+          <div className="countdown-container glass rounded-3xl p-8 max-w-2xl mx-auto backdrop-blur-lg border border-neon-cyan/30">
+            <p className="text-neon-yellow font-bold mb-4 text-lg font-cyber">
+              ⚡ LEGENDARY DEAL EXPIRES SOON ⚡
             </p>
             <CountdownTimer targetDate={targetDate} />
+            <p className="text-gray-400 mt-4 text-sm">
+              Join 1000+ GenZ Coders who are already building the future! 🌟
+            </p>
           </div>
         </div>
       </section>
