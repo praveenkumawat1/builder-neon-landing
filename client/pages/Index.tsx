@@ -219,7 +219,7 @@ export default function Index() {
           <div className="hero-buttons mb-12 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              onClick={() => navigate("/enrollment?type=join&plan=starter")}
+              onClick={() => navigate("/total-fees?plan=starter")}
               className="bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300"
             >
               Join Now Starting ₹149
