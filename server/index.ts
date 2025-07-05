@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { EnrollmentStorage } from "./storage/enrollmentStorage";
+import { EmailService } from "./services/emailService";
 
 export function createServer() {
   const app = express();
