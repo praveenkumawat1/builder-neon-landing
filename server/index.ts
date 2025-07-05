@@ -66,6 +66,23 @@ export function createServer() {
         transactionId,
       });
 
+      // Send confirmation email for demo bookings
+      if (enrollmentType === "demo") {
+        EmailService.sendDemoConfirmationEmail(enrollment)
+          .then((emailSent) => {
+            if (emailSent) {
+              console.log(`✅ Demo confirmation email sent to ${email}`);
+            } else {
+              console.log(
+                `❌ Failed to send demo confirmation email to ${email}`,
+              );
+            }
+          })
+          .catch((error) => {
+            console.error("Demo email sending error:", error);
+          });
+      }
+
       res.status(201).json({
         success: true,
         message: "Enrollment created successfully",
