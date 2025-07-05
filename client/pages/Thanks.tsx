@@ -163,6 +163,20 @@ export default function Thanks() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
+                    <Mail className="w-6 h-6 text-neon-green flex-shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold mb-1">
+                        {isDemo ? "Confirmation Email" : "Receipt Email Sent"}
+                      </h4>
+                      <p className="text-sm text-muted-foreground">
+                        {isDemo
+                          ? "Demo confirmation email sent to your inbox with next steps"
+                          : "Payment receipt and course details sent to your email address"}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
                     <Clock className="w-6 h-6 text-neon-cyan flex-shrink-0 mt-1" />
                     <div>
                       <h4 className="font-semibold mb-1">
