@@ -644,7 +644,7 @@ export default function Index() {
                 ))}
                 <Button
                   size="lg"
-                  onClick={() => navigate("/enrollment?type=join&plan=starter")}
+                  onClick={() => navigate("/total-fees?plan=starter")}
                   className="w-full bg-gradient-to-r from-neon-green to-neon-cyan hover:from-neon-green/80 hover:to-neon-cyan/80 text-background font-bold py-3 text-base shadow-lg hover:shadow-neon-green/25 transition-all duration-300 mt-6"
                 >
                   Get Started
