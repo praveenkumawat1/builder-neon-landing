@@ -99,26 +99,10 @@ export default function TotalFees() {
   const planId = searchParams.get("plan") || "starter";
   const plan = planDetails[planId];
 
-  const [couponCode, setCouponCode] = useState("");
-  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
-  const [couponError, setCouponError] = useState("");
-
   const GST_RATE = 0.18; // 18%
   const basePrice = plan.price;
-
-  // Calculate discount
-  let discountAmount = 0;
-  if (appliedCoupon) {
-    if (appliedCoupon.type === "percentage") {
-      discountAmount = (basePrice * appliedCoupon.discount) / 100;
-    } else {
-      discountAmount = appliedCoupon.discount;
-    }
-  }
-
-  const discountedPrice = Math.max(0, basePrice - discountAmount);
-  const gstAmount = discountedPrice * GST_RATE;
-  const totalAmount = discountedPrice + gstAmount;
+  const gstAmount = basePrice * GST_RATE;
+  const totalAmount = basePrice + gstAmount;
 
   const applyCoupon = () => {
     const coupon = coupons[couponCode.toUpperCase() as keyof typeof coupons];
