@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Enrollment from "./pages/Enrollment";
 import Thanks from "./pages/Thanks";
 import Admin from "./pages/Admin";
+import TotalFees from "./pages/TotalFees";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
