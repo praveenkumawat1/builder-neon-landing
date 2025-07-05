@@ -707,7 +707,7 @@ export default function Index() {
                 <CardTitle className="text-2xl">Elite</CardTitle>
                 <div className="text-5xl font-bold">
                   <span className="bg-gradient-to-r from-neon-cyan to-neon-purple text-transparent bg-clip-text">
-                    ₹399
+                    ₹299
                   </span>
                 </div>
                 <CardDescription className="text-base">
