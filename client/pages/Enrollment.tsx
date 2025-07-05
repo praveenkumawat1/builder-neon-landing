@@ -190,18 +190,36 @@ export default function Enrollment() {
         }
 
         // Update existing enrollment with transaction ID
-        const response = await fetch(
-          `/api/enrollment/${encodeURIComponent(formData.email)}/transaction`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ transactionId: formData.transactionId }),
-          },
-        );
+        let response;
+        let result;
 
-        const result = await response.json();
+        try {
+          response = await fetch(
+            `/api/enrollment/${encodeURIComponent(formData.email)}/transaction`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ transactionId: formData.transactionId }),
+            },
+          );
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          result = await response.json();
+        } catch (fetchError) {
+          console.error("Transaction update error:", fetchError);
+          setIsSubmitting(false);
+          toast({
+            title: "Network Error",
+            description: "Failed to update transaction. Please try again.",
+            variant: "destructive",
+          });
+          return;
+        }
 
         if (result.success) {
           toast({
