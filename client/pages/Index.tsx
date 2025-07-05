@@ -820,17 +820,32 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Interactive Code Playground Section */}
+      <section className="animate-section py-20 px-4 bg-card/20">
+        <CodePlayground />
+      </section>
+
+      {/* Progress Dashboard Section */}
+      <section className="animate-section py-20 px-4">
+        <ProgressDashboard />
+      </section>
+
+      {/* AI Code Assistant Section */}
+      <section className="animate-section py-20 px-4 bg-card/20">
+        <AICodeAssistant />
+      </section>
+
       {/* Final CTA Section */}
       <section className="animate-section py-20 px-4">
         <div className="container max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold mb-8">
             <span className="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan text-transparent bg-clip-text">
-              Join 100+ Students Now & Become a Frontend Hero!
+              Ready to Start Your Coding Journey?
             </span>
           </h2>
           <p className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Don't miss this opportunity to transform your career. Start your
-            frontend development journey today!
+            Join our advanced learning platform with interactive tools, progress
+            tracking, and AI assistance.
           </p>
 
           <Button
