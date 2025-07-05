@@ -592,16 +592,33 @@ export default function Enrollment() {
                   <Button
                     type="submit"
                     size="lg"
-                    disabled={isSubmitting}
+                    disabled={
+                      isSubmitting ||
+                      !formData.name ||
+                      !formData.email ||
+                      !formData.phone
+                    }
                     className="w-full bg-gradient-to-r from-neon-purple to-neon-pink hover:from-neon-purple/80 hover:to-neon-pink/80 text-white font-semibold py-3 text-lg shadow-lg hover:shadow-neon-purple/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={(e) => {
+                      if (isSubmitting) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return;
+                      }
+                    }}
                   >
-                    {isSubmitting
-                      ? "⏳ Processing..."
-                      : isDemo
-                        ? "🎯 Book Free Demo"
-                        : showPayment && formData.transactionId
-                          ? "✅ Complete Enrollment"
-                          : `💰 Proceed to Payment (${currentPlan.price})`}
+                    {isSubmitting ? (
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Processing...
+                      </div>
+                    ) : isDemo ? (
+                      "🎯 Book Free Demo"
+                    ) : showPayment && formData.transactionId ? (
+                      "✅ Complete Enrollment"
+                    ) : (
+                      `💰 Proceed to Payment (${currentPlan.price})`
+                    )}
                   </Button>
                 </form>
               </CardContent>
