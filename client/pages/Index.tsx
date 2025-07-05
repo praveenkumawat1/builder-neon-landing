@@ -732,7 +732,7 @@ export default function Index() {
                 ))}
                 <Button
                   size="lg"
-                  onClick={() => navigate("/enrollment?type=join&plan=elite")}
+                  onClick={() => navigate("/total-fees?plan=elite")}
                   className="w-full bg-gradient-to-r from-neon-cyan to-neon-purple hover:from-neon-cyan/80 hover:to-neon-purple/80 text-background font-bold py-3 text-base shadow-lg hover:shadow-neon-cyan/25 transition-all duration-300 mt-6"
                 >
                   Go Elite
