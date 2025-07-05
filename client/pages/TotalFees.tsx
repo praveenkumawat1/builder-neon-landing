@@ -15,12 +15,9 @@ import { Separator } from "@/components/ui/separator";
 import {
   ArrowLeft,
   CreditCard,
-  Tag,
   CheckCircle,
-  AlertCircle,
   Calculator,
   Percent,
-  Gift,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { toast } from "@/hooks/use-toast";
