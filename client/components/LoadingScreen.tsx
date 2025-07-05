@@ -179,7 +179,7 @@ export function LoadingScreen() {
           <div className="mb-6 font-mono text-xs text-neon-cyan">
             <pre className="whitespace-pre leading-tight">
               {`  ███████╗██████╗   ██████╗  ██████╗ ████████╗ ██████╗ █████╗ ███╗   ███╗██████╗
-  ██╔════╝██╔══██╗ ██╔═══██╗██╔═══██╗╚══██╔══╝██╔═���══╝██╔══██╗████╗ ████║██╔══██╗
+  ██╔════╝██╔══██╗ ██╔═══██╗██╔═══██╗╚══██╔══╝██╔════╝██╔══██╗████╗ ████║██╔══██╗
   █████╗  ██████╔╝ ██║   ██║██║   ██║   ██║   ██║     ███████║██╔████╔██║██████╔╝
   ██╔══╝  ██╔══██╗ ██║   ██║██║   ██║   ██║   ██║     ██╔══██║██║╚██╔╝██║██╔═══╝
   ██║     ██████╔╝ ╚██████╔╝╚██████╔╝   ██║   ╚██████╗██║  ██║██║ ╚═╝ ██║██║
@@ -282,35 +282,18 @@ export function LoadingScreen() {
         ].map((code, i) => (
           <div
             key={i}
-            className="absolute font-mono text-neon-cyan/30 text-sm animate-float"
+            className="absolute font-mono text-neon-cyan/30 text-sm"
             style={{
               left: `${10 + i * 12}%`,
               top: `${20 + (i % 3) * 20}%`,
+              animation: `floatAnimation ${3 + Math.random() * 2}s ease-in-out infinite`,
               animationDelay: `${i * 0.5}s`,
-              animationDuration: `${3 + Math.random() * 2}s`,
             }}
           >
             {code}
           </div>
         ))}
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0px) rotate(0deg);
-            opacity: 0.3;
-          }
-          50% {
-            transform: translateY(-20px) rotate(5deg);
-            opacity: 0.8;
-          }
-        }
-        .animate-float {
-          animation: float 4s ease-in-out infinite;
-        }
-      `}</style>
     </div>
   );
 }

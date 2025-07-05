@@ -146,4 +146,17 @@
   .glow-pink {
     box-shadow: 0 0 20px hsl(var(--neon-pink) / 0.3);
   }
+
+  /* Float animation for loading screen */
+  @keyframes floatAnimation {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+      opacity: 0.8;
+    }
+  }
 }
