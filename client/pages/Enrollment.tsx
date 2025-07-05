@@ -126,15 +126,33 @@ export default function Enrollment() {
           selectedPlan: "starter" as const,
         };
 
-        const response = await fetch("/api/enrollment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(enrollmentData),
-        });
+        let response;
+        let result;
 
-        const result = await response.json();
+        try {
+          response = await fetch("/api/enrollment", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(enrollmentData),
+          });
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          result = await response.json();
+        } catch (fetchError) {
+          console.error("Demo fetch error:", fetchError);
+          setIsSubmitting(false);
+          toast({
+            title: "Network Error",
+            description: "Failed to submit demo request. Please try again.",
+            variant: "destructive",
+          });
+          return;
+        }
 
         if (result.success) {
           toast({
