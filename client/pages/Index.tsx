@@ -248,16 +248,12 @@ export default function Index() {
       <section className="animate-section py-24 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/10 via-transparent to-neon-cyan/10"></div>
         <div className="container max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-black mb-6 font-cyber">
-              <span className="gradient-text">WHY GENZ CODES</span>
-              <br />
-              <span className="text-neon-yellow">DIFFERENTLY? 🔥</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-neon-cyan to-neon-purple text-transparent bg-clip-text">
+                Why Choose GenZ Coding School?
+              </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              We're not your typical boring bootcamp. We speak your language and
-              build for the future!
-            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
