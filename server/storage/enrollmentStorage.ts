@@ -146,10 +146,8 @@ export class EnrollmentStorage {
   }
 
   static clear(): void {
-    if (typeof window !== "undefined") {
-      localStorage.removeItem(STORAGE_KEY);
-    }
-    console.log("🗑️ All enrollment data permanently cleared");
+    enrollments = [];
+    console.log("🗑️ All enrollment data cleared from memory");
   }
 
   static exportData(): string {
