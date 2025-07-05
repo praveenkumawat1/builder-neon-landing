@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { AdminLogin } from "@/components/AdminLogin";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { LoadingScreen } from "@/components/LoadingScreen";
+import { ChatBot } from "@/components/ChatBot";
 import { Button } from "@/components/ui/button";
 import {
   Card,
