@@ -105,15 +105,13 @@ export default function TotalFees() {
   const totalAmount = basePrice + gstAmount;
 
   const proceedToPayment = () => {
-    // Pass the final amount and coupon details to enrollment page
+    // Pass the final amount details to enrollment page
     const params = new URLSearchParams({
       type: "join",
       plan: planId,
       finalAmount: totalAmount.toFixed(2),
       baseAmount: basePrice.toString(),
       gstAmount: gstAmount.toFixed(2),
-      discountAmount: discountAmount.toFixed(2),
-      ...(appliedCoupon && { couponCode: appliedCoupon.code }),
     });
 
     navigate(`/enrollment?${params.toString()}`);
