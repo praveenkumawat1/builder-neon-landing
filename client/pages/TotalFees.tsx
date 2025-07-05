@@ -104,35 +104,6 @@ export default function TotalFees() {
   const gstAmount = basePrice * GST_RATE;
   const totalAmount = basePrice + gstAmount;
 
-  const applyCoupon = () => {
-    const coupon = coupons[couponCode.toUpperCase() as keyof typeof coupons];
-    if (coupon) {
-      setAppliedCoupon({ ...coupon, code: couponCode.toUpperCase() });
-      setCouponError("");
-      toast({
-        title: "Coupon Applied!",
-        description: `${coupon.description} - ₹${coupon.type === "percentage" ? Math.round((basePrice * coupon.discount) / 100) : coupon.discount} off`,
-      });
-    } else {
-      setCouponError("Invalid coupon code");
-      toast({
-        title: "Invalid Coupon",
-        description: "Please enter a valid coupon code",
-        variant: "destructive",
-      });
-    }
-  };
-
-  const removeCoupon = () => {
-    setAppliedCoupon(null);
-    setCouponCode("");
-    setCouponError("");
-    toast({
-      title: "Coupon Removed",
-      description: "Coupon discount has been removed",
-    });
-  };
-
   const proceedToPayment = () => {
     // Pass the final amount and coupon details to enrollment page
     const params = new URLSearchParams({
