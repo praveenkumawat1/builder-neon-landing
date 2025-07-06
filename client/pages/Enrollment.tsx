@@ -32,7 +32,6 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ChatBot } from "@/components/ChatBot";
-import QRCode from "qrcode.react"; // Added import for QR code
 
 export default function Enrollment() {
   const [searchParams] = useSearchParams();
@@ -618,10 +617,11 @@ export default function Enrollment() {
                 ) : (
                   <div
                     ref={qrRef}
-                    className={`transition-all duration-500 ${showPayment
+                    className={`transition-all duration-500 ${
+                      showPayment
                         ? "opacity-100 scale-100"
                         : "opacity-50 scale-95 pointer-events-none"
-                      }`}
+                    }`}
                   >
                     <div className="text-center mb-6">
                       <div className="text-3xl font-bold mb-2">
@@ -690,12 +690,12 @@ export default function Enrollment() {
                 <ul className="space-y-2 text-sm">
                   {(isDemo
                     ? [
-                      "1-hour live session",
-                      "HTML basics walkthrough",
-                      "Q&A with instructor",
-                      "Course overview & roadmap",
-                      "Special enrollment discount",
-                    ]
+                        "1-hour live session",
+                        "HTML basics walkthrough",
+                        "Q&A with instructor",
+                        "Course overview & roadmap",
+                        "Special enrollment discount",
+                      ]
                     : currentPlan.features
                   ).map((benefit, index) => (
                     <li key={index} className="flex items-center gap-2">
