@@ -358,7 +358,7 @@ export default function Enrollment() {
     },
     elite: {
       name: "Elite Plan",
-      price: "₹399",
+      price: "₹299",
       color: "neon-cyan",
       features: [
         "Everything in Pro",
