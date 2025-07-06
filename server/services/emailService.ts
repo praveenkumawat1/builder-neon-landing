@@ -33,7 +33,7 @@ const PLAN_DETAILS = {
   },
   elite: {
     name: "Elite Plan",
-    price: 399,
+    price: 299,
     features: [
       "Everything in Pro",
       "Unlimited mentoring sessions",
