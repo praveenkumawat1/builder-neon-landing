@@ -69,11 +69,11 @@ const FAQ_RESPONSES = {
     ],
   },
   demo: {
-    text: "🎬 **Free Demo Available!**\n\nGet a taste of our teaching style:\n• 30-minute live session\n• Sample project walkthrough\n• Q&A with instructor Praveen\n• No commitment required\n\n**Book Your Free Demo:**\nClick 'Book Demo' on our homepage or call us directly!\n\n📞 +91 97725 36873",
+    text: "🎬 **Free Demo Available!**\n\nGet a taste of our teaching style:\n• 30-minute live session\n• Sample project walkthrough\n• Q&A with instructor Praveen\n�� No commitment required\n\n**Book Your Free Demo:**\nClick 'Book Demo' on our homepage or call us directly!\n\n📞 +91 97725 36873",
     suggestions: ["How to enroll?", "What's included?", "Pricing details"],
   },
   contact: {
-    text: "📞 **Get in Touch:**\n\n**Praveen Kumawat** - Lead Instructor\n• Phone: +91 97725 36873\n• WhatsApp: Available 9 AM - 9 PM\n• Response time: Within 2 hours\n\n**Follow Us:**\n• Instagram: @frontend_bootcamp\n• YouTube: Frontend Mastery\n• GitHub: Community projects\n\nWe're here to help! 💬",
+    text: "📞 **Get in Touch:**\n\n**GenZ Coding School**\n• Phone: +91 97725 46873\n• WhatsApp: https://chat.whatsapp.com/L3lEfMTKBm4JeTdxG8CU0U\n• Email: genzcodingschool@gmail.com\n• Response time: Within 2 hours\n\n**Follow Us:**\n• Instagram: https://www.instagram.com/genz_coding_school/\n• YouTube: https://www.youtube.com/@genzcodingschool\n• LinkedIn: www.linkedin.com/in/genz-coding-school-571078348\n\nWe're here to help! 💬",
     suggestions: ["Book a demo", "Tell me about courses", "Pricing plans"],
   },
 };
