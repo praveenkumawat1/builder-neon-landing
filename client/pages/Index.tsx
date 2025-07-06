@@ -618,17 +618,31 @@ export default function Index() {
                   variant="outline"
                   size="sm"
                   className="border-neon-pink text-neon-pink hover:bg-neon-pink hover:text-background"
+                  asChild
                 >
-                  <Instagram className="w-4 h-4 mr-2" />
-                  Instagram
+                  <a
+                    href="https://www.instagram.com/genz_coding_school/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Instagram className="w-4 h-4 mr-2" />
+                    Instagram
+                  </a>
                 </Button>
                 <Button
                   variant="outline"
                   size="sm"
                   className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background"
+                  asChild
                 >
-                  <Youtube className="w-4 h-4 mr-2" />
-                  YouTube
+                  <a
+                    href="https://www.youtube.com/@genzcodingschool"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Youtube className="w-4 h-4 mr-2" />
+                    YouTube
+                  </a>
                 </Button>
               </div>
             </CardContent>
