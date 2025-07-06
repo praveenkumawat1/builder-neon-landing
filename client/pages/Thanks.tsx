@@ -258,7 +258,7 @@ export default function Thanks() {
                   size="sm"
                   className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background"
                 >
-                  <a href="mailto:praveen@frontendbootcamp.com">
+                  <a href="mailto:genzcodingschool@gmail.com">
                     <Mail className="w-4 h-4 mr-2" />
                     Send Email
                   </a>
@@ -281,7 +281,7 @@ export default function Thanks() {
                   className="border-neon-pink text-neon-pink hover:bg-neon-pink hover:text-background"
                 >
                   <a
-                    href="https://instagram.com/praveenkumawat_dev"
+                    href="https://www.instagram.com/genz_coding_school/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
