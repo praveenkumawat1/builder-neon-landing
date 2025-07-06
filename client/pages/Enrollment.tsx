@@ -704,7 +704,7 @@ export default function Enrollment() {
                         <div className="bg-background/50 rounded-lg p-3 border border-border">
                           <div className="flex items-center justify-between">
                             <span className="text-sm">
-                              UPI ID: praveenkumawat@paytm
+                                UPI ID: 9772546873@pthdfc
                             </span>
                             <Button
                               variant="ghost"
