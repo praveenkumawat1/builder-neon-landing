@@ -729,7 +729,10 @@ export default function Index() {
                   "Community Access",
                   "Advanced Assignments/Tasks",
                   "Group + Chat + Review Doubt Solving",
-                  "Portfolio + Resume Help (Bonus)",
+                  "LinkedIn Profile Review + Resume Template",
+                  "1:1 Mentorship Call (15 mins)",
+                  "Project Hosting on Netlify + GitHub",
+                  "Top Performer Feature on Instagram Story",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-neon-cyan flex-shrink-0" />
