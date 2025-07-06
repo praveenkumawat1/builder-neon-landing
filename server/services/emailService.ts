@@ -279,7 +279,7 @@ export class EmailService {
 📧 DEMO CONFIRMATION EMAIL SENT TO: ${enrollment.email}
 📝 SUBJECT: ${subject}
 👨‍🏫 INSTRUCTOR: Praveen Kumawat
-📞 CONTACT: +91 97725 36873
+📞 CONTACT: +91 97725 46873
 📅 DEMO TIMING: Within 2 hours via WhatsApp
 
 ✅ Demo confirmation email sent successfully!
