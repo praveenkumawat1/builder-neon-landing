@@ -991,22 +991,30 @@ export default function Index() {
                   variant="ghost"
                   size="sm"
                   className="text-neon-cyan hover:bg-neon-cyan hover:text-background"
+                  asChild
                 >
-                  <Instagram className="w-4 h-4" />
+                  <a href="https://www.instagram.com/genz_coding_school/" target="_blank" rel="noopener noreferrer">
+                    <Instagram className="w-4 h-4" />
+                  </a>
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
                   className="text-neon-purple hover:bg-neon-purple hover:text-background"
+                  asChild
                 >
-                  <Youtube className="w-4 h-4" />
+                  <a href="https://www.youtube.com/@genzcodingschool" target="_blank" rel="noopener noreferrer">
+                    <Youtube className="w-4 h-4" />
+                  </a>
                 </Button>
                 <Button
                   variant="ghost"
                   size="sm"
                   className="text-neon-pink hover:bg-neon-pink hover:text-background"
+                  asChild
                 >
-                  <Github className="w-4 h-4" />
+                  <a href="www.linkedin.com/in/genz-coding-school-571078348" target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4" />
                 </Button>
               </div>
               <div className="text-sm text-muted-foreground space-y-1">
