@@ -720,14 +720,16 @@ export default function Index() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
-                  "Everything in Pro",
-                  "Unlimited 1-on-1 Sessions",
-                  "Live Portfolio Building",
-                  "Mock Interviews (5x)",
-                  "LinkedIn Profile Optimization",
-                  "Guaranteed Job Referrals",
-                  "6 Months Career Mentorship",
-                  "Advanced React/Node.js Bonus",
+                  "HTML, CSS, JS, Tailwind, GSAP",
+                  "Daily Live Classes",
+                  "5 Projects (Advanced)",
+                  "All Topics Notes",
+                  "Practice Sheets",
+                  "Completion Certificate",
+                  "Community Access",
+                  "Advanced Assignments/Tasks",
+                  "Group + Chat + Review Doubt Solving",
+                  "Portfolio + Resume Help (Bonus)",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-neon-cyan flex-shrink-0" />
