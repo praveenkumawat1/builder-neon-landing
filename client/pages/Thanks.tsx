@@ -435,7 +435,7 @@ export default function Thanks() {
                 size="sm"
                 className="border-neon-cyan text-neon-cyan hover:bg-neon-cyan hover:text-background"
               >
-                <a href="mailto:praveen@frontendbootcamp.com">
+                <a href="mailto:genzcodingschool@gmail.com">
                   <Mail className="w-4 h-4 mr-2" />
                   Email Support
                 </a>
