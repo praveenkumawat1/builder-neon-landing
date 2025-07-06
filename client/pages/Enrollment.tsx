@@ -24,7 +24,6 @@ import {
   ArrowLeft,
   CheckCircle,
   Copy,
-  QrCode,
   Smartphone,
   CreditCard,
   Shield,
@@ -33,6 +32,7 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ChatBot } from "@/components/ChatBot";
+import QRCode from "qrcode.react"; // Added import for QR code
 
 export default function Enrollment() {
   const [searchParams] = useSearchParams();
@@ -54,9 +54,7 @@ export default function Enrollment() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    // Animate form entrance
     const tl = gsap.timeline();
-
     tl.from(".form-header", {
       y: -50,
       opacity: 0,
@@ -91,14 +89,10 @@ export default function Enrollment() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Prevent duplicate submissions
     if (isSubmitting) {
       console.log("Submission already in progress, preventing duplicate");
       return;
     }
-
-    // Validate required fields
     if (!formData.name || !formData.email || !formData.phone) {
       toast({
         title: "Missing Information",
@@ -107,14 +101,9 @@ export default function Enrollment() {
       });
       return;
     }
-
     setIsSubmitting(true);
-
-    // Add a small delay to prevent rapid duplicate submissions
     await new Promise((resolve) => setTimeout(resolve, 100));
-
     try {
-      // For demo, submit to database and navigate to thanks page
       if (isDemo) {
         const enrollmentData = {
           name: formData.name,
@@ -126,10 +115,8 @@ export default function Enrollment() {
           enrollmentType: "demo" as const,
           selectedPlan: "starter" as const,
         };
-
         let response;
         let result;
-
         try {
           response = await fetch("/api/enrollment", {
             method: "POST",
@@ -138,11 +125,9 @@ export default function Enrollment() {
             },
             body: JSON.stringify(enrollmentData),
           });
-
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-
           result = await response.json();
         } catch (fetchError) {
           console.error("Demo fetch error:", fetchError);
@@ -154,7 +139,6 @@ export default function Enrollment() {
           });
           return;
         }
-
         if (result.success) {
           toast({
             title: "Demo Booked Successfully! 🎉",
@@ -175,10 +159,7 @@ export default function Enrollment() {
         setIsSubmitting(false);
         return;
       }
-
-      // For paid enrollment, check if payment section is already shown
       if (showPayment) {
-        // Validate transaction ID
         if (!formData.transactionId) {
           toast({
             title: "Transaction ID Required",
@@ -189,11 +170,8 @@ export default function Enrollment() {
           setIsSubmitting(false);
           return;
         }
-
-        // Update existing enrollment with transaction ID
         let response;
         let result;
-
         try {
           response = await fetch(
             `/api/enrollment/${encodeURIComponent(formData.email)}/transaction`,
@@ -205,11 +183,9 @@ export default function Enrollment() {
               body: JSON.stringify({ transactionId: formData.transactionId }),
             },
           );
-
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
-
           result = await response.json();
         } catch (fetchError) {
           console.error("Transaction update error:", fetchError);
@@ -221,7 +197,6 @@ export default function Enrollment() {
           });
           return;
         }
-
         if (result.success) {
           toast({
             title: "Enrollment Completed! 🚀",
@@ -242,8 +217,6 @@ export default function Enrollment() {
         setIsSubmitting(false);
         return;
       }
-
-      // Show payment section for the first time - save basic enrollment data
       const basicEnrollmentData = {
         name: formData.name,
         email: formData.email,
@@ -254,10 +227,8 @@ export default function Enrollment() {
         enrollmentType: "join" as const,
         selectedPlan: selectedPlan as "starter" | "pro" | "elite",
       };
-
       let response;
       let result;
-
       try {
         response = await fetch("/api/enrollment", {
           method: "POST",
@@ -266,11 +237,9 @@ export default function Enrollment() {
           },
           body: JSON.stringify(basicEnrollmentData),
         });
-
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-
         result = await response.json();
       } catch (fetchError) {
         console.error("Basic enrollment error:", fetchError);
@@ -282,18 +251,14 @@ export default function Enrollment() {
         });
         return;
       }
-
       if (result.success) {
         setShowPayment(true);
-
-        // Animate to payment section
         gsap.to(qrRef.current, {
           scale: 1,
           opacity: 1,
           duration: 0.8,
           ease: "back.out(1.7)",
         });
-
         toast({
           title: "Form Submitted!",
           description:
@@ -379,7 +344,6 @@ export default function Enrollment() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ThemeToggle />
-      {/* Background particles */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         {Array.from({ length: 15 }).map((_, i) => (
           <div
@@ -395,7 +359,6 @@ export default function Enrollment() {
       </div>
 
       <div className="container max-w-7xl mx-auto px-4 py-8 relative z-10">
-        {/* Header */}
         <div className="form-header mb-8">
           <Link
             to="/"
@@ -404,7 +367,6 @@ export default function Enrollment() {
             <ArrowLeft className="w-4 h-4" />
             Back to Home
           </Link>
-
           <div className="text-center">
             <Badge
               variant="outline"
@@ -428,7 +390,6 @@ export default function Enrollment() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Enrollment Form */}
           <div className="form-content">
             <Card className="bg-card/80 border-border">
               <CardHeader>
@@ -459,7 +420,6 @@ export default function Enrollment() {
                       required
                     />
                   </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="email">
                       Email Address <span className="text-destructive">*</span>
@@ -476,7 +436,6 @@ export default function Enrollment() {
                       required
                     />
                   </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="phone">
                       Phone Number <span className="text-destructive">*</span>
@@ -497,7 +456,6 @@ export default function Enrollment() {
                       Enter your WhatsApp number for course updates
                     </p>
                   </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="education">Education Background</Label>
                     <Select
@@ -522,7 +480,6 @@ export default function Enrollment() {
                       </SelectContent>
                     </Select>
                   </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="experience">
                       Programming Experience (Optional)
@@ -550,7 +507,6 @@ export default function Enrollment() {
                       </SelectContent>
                     </Select>
                   </div>
-
                   <div className="space-y-2">
                     <Label htmlFor="motivation">
                       Why do you want to join? (Optional)
@@ -566,7 +522,6 @@ export default function Enrollment() {
                       rows={4}
                     />
                   </div>
-
                   {!isDemo && showPayment && (
                     <div className="space-y-2 p-4 border border-neon-cyan/30 rounded-lg bg-neon-cyan/5">
                       <Label htmlFor="transactionId">
@@ -589,7 +544,6 @@ export default function Enrollment() {
                       </p>
                     </div>
                   )}
-
                   <Button
                     type="submit"
                     size="lg"
@@ -625,8 +579,6 @@ export default function Enrollment() {
               </CardContent>
             </Card>
           </div>
-
-          {/* Payment Section */}
           <div className="payment-section">
             <Card className="bg-card/80 border-border">
               <CardHeader>
@@ -666,11 +618,10 @@ export default function Enrollment() {
                 ) : (
                   <div
                     ref={qrRef}
-                    className={`transition-all duration-500 ${
-                      showPayment
+                    className={`transition-all duration-500 ${showPayment
                         ? "opacity-100 scale-100"
                         : "opacity-50 scale-95 pointer-events-none"
-                    }`}
+                      }`}
                   >
                     <div className="text-center mb-6">
                       <div className="text-3xl font-bold mb-2">
@@ -684,27 +635,23 @@ export default function Enrollment() {
                         {currentPlan.name} • Lifetime access
                       </p>
                     </div>
-
-                    {/* QR Code Placeholder */}
                     <div className="bg-white p-4 rounded-lg mb-4 mx-auto w-fit">
-                      <div className="w-48 h-48 bg-black relative">
-                        <div className="absolute inset-2 bg-white flex items-center justify-center">
-                          <QrCode className="w-20 h-20 text-black" />
-                        </div>
-                        {/* Simple QR pattern simulation */}
-                        <div className="absolute top-2 left-2 w-8 h-8 bg-black"></div>
-                        <div className="absolute top-2 right-2 w-8 h-8 bg-black"></div>
-                        <div className="absolute bottom-2 left-2 w-8 h-8 bg-black"></div>
-                      </div>
+                      <QRCode
+                        value="9772546873@pthdfc"
+                        size={192}
+                        bgColor="#ffffff"
+                        fgColor="#000000"
+                        level="H"
+                        includeMargin={true}
+                      />
                     </div>
-
                     <div className="space-y-4">
                       <div className="text-center">
                         <p className="font-semibold mb-2">Scan QR Code or</p>
                         <div className="bg-background/50 rounded-lg p-3 border border-border">
                           <div className="flex items-center justify-between">
                             <span className="text-sm">
-                                UPI ID: 9772546873@pthdfc
+                              UPI ID: 9772546873@pthdfc
                             </span>
                             <Button
                               variant="ghost"
@@ -717,12 +664,10 @@ export default function Enrollment() {
                           </div>
                         </div>
                       </div>
-
                       <div className="flex items-center gap-2 text-sm text-muted-foreground justify-center">
                         <Shield className="w-4 h-4 text-neon-green" />
                         <span>Secure payment via UPI</span>
                       </div>
-
                       <div className="text-xs text-muted-foreground text-center space-y-1">
                         <p>
                           After payment, enter your transaction ID above to
@@ -735,8 +680,6 @@ export default function Enrollment() {
                 )}
               </CardContent>
             </Card>
-
-            {/* Course Benefits Reminder */}
             <Card className="bg-gradient-to-br from-card/40 to-card/20 border-neon-purple/30 mt-6">
               <CardHeader>
                 <CardTitle className="text-lg">
@@ -747,12 +690,12 @@ export default function Enrollment() {
                 <ul className="space-y-2 text-sm">
                   {(isDemo
                     ? [
-                        "1-hour live session",
-                        "HTML basics walkthrough",
-                        "Q&A with instructor",
-                        "Course overview & roadmap",
-                        "Special enrollment discount",
-                      ]
+                      "1-hour live session",
+                      "HTML basics walkthrough",
+                      "Q&A with instructor",
+                      "Course overview & roadmap",
+                      "Special enrollment discount",
+                    ]
                     : currentPlan.features
                   ).map((benefit, index) => (
                     <li key={index} className="flex items-center gap-2">
@@ -766,8 +709,6 @@ export default function Enrollment() {
           </div>
         </div>
       </div>
-
-      {/* Support ChatBot */}
       <ChatBot />
     </div>
   );
