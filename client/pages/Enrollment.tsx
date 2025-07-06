@@ -636,7 +636,11 @@ export default function Enrollment() {
                       </p>
                     </div>
                     <div className="bg-white p-4 rounded-lg mb-4 mx-auto w-fit">
-                      <div className="w-48 h-48 bg-white border-2 border-gray-200 flex flex-col items-center justify-center">
+                     <img
+                        src="/qr-code.png" // Assumes image is in public/ folder
+                        alt="UPI QR Code"
+                        className="w-48 h-48 object-contain"
+                      />
                         <div className="text-center mb-4">
                           <CreditCard className="w-12 h-12 text-gray-400 mx-auto mb-2" />
                           <p className="text-sm font-medium text-gray-600">
