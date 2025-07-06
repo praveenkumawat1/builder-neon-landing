@@ -301,79 +301,305 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Course Content Section */}
+      {/* 21-Day Curriculum Section */}
       <section className="animate-section py-20 px-4 bg-card/20">
-        <div className="container max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
-            <span className="bg-gradient-to-r from-neon-purple to-neon-pink text-transparent bg-clip-text">
-              Course Curriculum
-            </span>
-          </h2>
+        <div className="container max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-neon-purple to-neon-pink text-transparent bg-clip-text">
+                21-Day Frontend Bootcamp Curriculum
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
+              Master HTML, CSS, JavaScript, Tailwind CSS & GSAP in just 21 days
+              with projects and live classes!
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                week: "Week 1",
-                title: "Foundation",
-                topics: [
-                  "HTML Fundamentals",
-                  "CSS Styling",
-                  "Tailwind CSS Basics",
-                  "Responsive Design",
-                ],
-                icon: <Code className="w-8 h-8" />,
-              },
-              {
-                week: "Week 2",
-                title: "Interactivity",
-                topics: [
-                  "JavaScript Fundamentals",
-                  "DOM Manipulation",
-                  "Event Handling",
-                  "Dynamic Content",
-                ],
-                icon: <Zap className="w-8 h-8" />,
-              },
-              {
-                week: "Week 3",
-                title: "Animation",
-                topics: [
-                  "GSAP Basics",
-                  "Timeline Animations",
-                  "ScrollTrigger",
-                  "Project Building",
-                ],
-                icon: <Palette className="w-8 h-8" />,
-              },
-            ].map((week, index) => (
-              <Card
-                key={index}
-                className="feature-card bg-card/80 border-border hover:border-neon-cyan/50 transition-all duration-300 hover:shadow-lg hover:shadow-neon-cyan/10"
-              >
-                <CardHeader className="text-center">
-                  <div className="text-neon-cyan mb-4 flex justify-center">
-                    {week.icon}
+          {/* Week 1: HTML + CSS Fundamentals */}
+          <div className="mb-12">
+            <Card className="bg-gradient-to-r from-neon-green/10 to-neon-cyan/10 border-neon-green/30">
+              <CardHeader>
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-neon-green/20 rounded-lg">
+                    <Code className="w-8 h-8 text-neon-green" />
                   </div>
-                  <Badge
-                    variant="outline"
-                    className="border-neon-purple text-neon-purple mb-2"
-                  >
-                    {week.week}
-                  </Badge>
-                  <CardTitle className="text-xl">{week.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {week.topics.map((topic, topicIndex) => (
-                      <li key={topicIndex} className="flex items-center gap-2">
-                        <CheckCircle className="w-4 h-4 text-neon-green flex-shrink-0" />
-                        <span className="text-sm">{topic}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
+                  <div>
+                    <Badge className="bg-neon-green text-black mb-2">
+                      Week 1
+                    </Badge>
+                    <CardTitle className="text-2xl">
+                      HTML + CSS Fundamentals
+                    </CardTitle>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+                  {[
+                    {
+                      day: 1,
+                      topic: "Introduction to HTML & Web Basics",
+                      task: "Create basic webpage",
+                    },
+                    {
+                      day: 2,
+                      topic: "HTML Elements, Forms, Semantic Tags",
+                      task: "Form Design Task",
+                    },
+                    {
+                      day: 3,
+                      topic: "CSS Basics: Selectors, Colors, Fonts",
+                      task: "Style a resume layout",
+                    },
+                    {
+                      day: 4,
+                      topic: "Box Model, Margin, Padding, Border",
+                      task: "Box Model Quiz",
+                    },
+                    {
+                      day: 5,
+                      topic: "CSS Layout: Flexbox Basics",
+                      task: "Flexbox Card Layout Task",
+                    },
+                    {
+                      day: 6,
+                      topic: "CSS Layout: Grid Basics",
+                      task: "Grid-based Image Gallery",
+                    },
+                    {
+                      day: 7,
+                      topic: "Project 1: Portfolio Homepage (HTML+CSS)",
+                      task: "Build & Submit",
+                    },
+                  ].map((day) => (
+                    <Card
+                      key={day.day}
+                      className="bg-white/50 border-neon-green/20 hover:bg-white/70 transition-all"
+                    >
+                      <CardContent className="p-4">
+                        <div className="text-center mb-3">
+                          <Badge
+                            variant="outline"
+                            className="border-neon-green text-neon-green"
+                          >
+                            Day {day.day}
+                          </Badge>
+                        </div>
+                        <h4 className="font-semibold text-sm mb-2 leading-tight">
+                          {day.topic}
+                        </h4>
+                        <div className="text-xs text-muted-foreground bg-gray-50 p-2 rounded">
+                          <strong>Task:</strong> {day.task}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Week 2: JavaScript + Tailwind CSS */}
+          <div className="mb-12">
+            <Card className="bg-gradient-to-r from-neon-purple/10 to-neon-pink/10 border-neon-purple/30">
+              <CardHeader>
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-neon-purple/20 rounded-lg">
+                    <Zap className="w-8 h-8 text-neon-purple" />
+                  </div>
+                  <div>
+                    <Badge className="bg-neon-purple text-white mb-2">
+                      Week 2
+                    </Badge>
+                    <CardTitle className="text-2xl">
+                      JavaScript + Tailwind CSS
+                    </CardTitle>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+                  {[
+                    {
+                      day: 8,
+                      topic: "JS Basics: Variables, Data Types",
+                      task: "JS Calculator (Basic)",
+                    },
+                    {
+                      day: 9,
+                      topic: "Conditions, Loops, Events",
+                      task: "Quiz App Starter",
+                    },
+                    {
+                      day: 10,
+                      topic: "Functions & DOM Manipulation",
+                      task: "Change theme with JS",
+                    },
+                    {
+                      day: 11,
+                      topic: "Introduction to Tailwind CSS",
+                      task: "Setup Tailwind Project",
+                    },
+                    {
+                      day: 12,
+                      topic: "Layouts with Tailwind",
+                      task: "Card + Button Design Task",
+                    },
+                    {
+                      day: 13,
+                      topic: "Tailwind + JS: Responsive Navbar",
+                      task: "Navbar Toggle Task",
+                    },
+                    {
+                      day: 14,
+                      topic: "Project 2: Product Landing Page",
+                      task: "Build & Submit",
+                    },
+                  ].map((day) => (
+                    <Card
+                      key={day.day}
+                      className="bg-white/50 border-neon-purple/20 hover:bg-white/70 transition-all"
+                    >
+                      <CardContent className="p-4">
+                        <div className="text-center mb-3">
+                          <Badge
+                            variant="outline"
+                            className="border-neon-purple text-neon-purple"
+                          >
+                            Day {day.day}
+                          </Badge>
+                        </div>
+                        <h4 className="font-semibold text-sm mb-2 leading-tight">
+                          {day.topic}
+                        </h4>
+                        <div className="text-xs text-muted-foreground bg-gray-50 p-2 rounded">
+                          <strong>Task:</strong> {day.task}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Week 3: Animations + Final Projects */}
+          <div className="mb-12">
+            <Card className="bg-gradient-to-r from-neon-cyan/10 to-neon-pink/10 border-neon-cyan/30">
+              <CardHeader>
+                <div className="flex items-center gap-4">
+                  <div className="p-3 bg-neon-cyan/20 rounded-lg">
+                    <Palette className="w-8 h-8 text-neon-cyan" />
+                  </div>
+                  <div>
+                    <Badge className="bg-neon-cyan text-black mb-2">
+                      Week 3
+                    </Badge>
+                    <CardTitle className="text-2xl">
+                      Animations + Final Projects
+                    </CardTitle>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
+                  {[
+                    {
+                      day: 15,
+                      topic: "GSAP Basics: Timelines, Triggers",
+                      task: "Animate a banner",
+                    },
+                    {
+                      day: 16,
+                      topic: "Scroll Animations with GSAP",
+                      task: "Scroll reveal effect",
+                    },
+                    {
+                      day: 17,
+                      topic: "Review + Project Discussion",
+                      task: "Choose Final Project Topic",
+                    },
+                    {
+                      day: 18,
+                      topic: "Final Project Build Day 1",
+                      task: "Live Support",
+                    },
+                    {
+                      day: 19,
+                      topic: "Final Project Build Day 2",
+                      task: "Submit & Get Feedback",
+                    },
+                    {
+                      day: 20,
+                      topic: "Resume + GitHub + LinkedIn Setup",
+                      task: "Upload Project Live",
+                    },
+                    {
+                      day: 21,
+                      topic: "Live Test + Certificate Distribution",
+                      task: "Quiz + Student Showcase",
+                    },
+                  ].map((day) => (
+                    <Card
+                      key={day.day}
+                      className="bg-white/50 border-neon-cyan/20 hover:bg-white/70 transition-all"
+                    >
+                      <CardContent className="p-4">
+                        <div className="text-center mb-3">
+                          <Badge
+                            variant="outline"
+                            className="border-neon-cyan text-neon-cyan"
+                          >
+                            Day {day.day}
+                          </Badge>
+                        </div>
+                        <h4 className="font-semibold text-sm mb-2 leading-tight">
+                          {day.topic}
+                        </h4>
+                        <div className="text-xs text-muted-foreground bg-gray-50 p-2 rounded">
+                          <strong>Task:</strong> {day.task}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Key Highlights */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
+            <Card className="bg-gradient-to-br from-neon-green/20 to-neon-cyan/20 border-neon-green/30">
+              <CardContent className="p-6 text-center">
+                <BookOpen className="w-12 h-12 text-neon-green mx-auto mb-4" />
+                <h3 className="font-bold text-lg mb-2">7 Hands-on Projects</h3>
+                <p className="text-sm text-muted-foreground">
+                  Build real-world projects from day 1 to build your portfolio
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-gradient-to-br from-neon-purple/20 to-neon-pink/20 border-neon-purple/30">
+              <CardContent className="p-6 text-center">
+                <Users className="w-12 h-12 text-neon-purple mx-auto mb-4" />
+                <h3 className="font-bold text-lg mb-2">Daily Live Classes</h3>
+                <p className="text-sm text-muted-foreground">
+                  Interactive sessions with live coding and instant doubt
+                  resolution
+                </p>
+              </CardContent>
+            </Card>
+            <Card className="bg-gradient-to-br from-neon-cyan/20 to-neon-pink/20 border-neon-cyan/30">
+              <CardContent className="p-6 text-center">
+                <Award className="w-12 h-12 text-neon-cyan mx-auto mb-4" />
+                <h3 className="font-bold text-lg mb-2">
+                  Industry-Ready Skills
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  Learn the exact technologies used by top companies
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
