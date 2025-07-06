@@ -637,7 +637,7 @@ export default function Enrollment() {
                 <CardDescription>
                   {isDemo
                     ? "Your demo session is completely free!"
-                    : "Secure payment via UPI - Pay ₹99 to complete enrollment"}
+                    : "Secure payment via UPI - Pay ₹149 to complete enrollment"}
                 </CardDescription>
               </CardHeader>
               <CardContent>
