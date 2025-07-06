@@ -319,7 +319,7 @@ export default function Enrollment() {
   };
 
   const copyUpiId = () => {
-    navigator.clipboard.writeText("praveenkumawat@paytm");
+    navigator.clipboard.writeText("9772546873@pthdfc");
     toast({
       title: "UPI ID Copied!",
       description: "The UPI ID has been copied to your clipboard.",
