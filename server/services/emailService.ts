@@ -12,7 +12,7 @@ interface EmailTemplate {
 const PLAN_DETAILS = {
   starter: {
     name: "Starter Plan",
-    price: 99,
+    price: 149,
     features: [
       "21-day course access",
       "All course materials",
