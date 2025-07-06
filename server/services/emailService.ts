@@ -171,11 +171,11 @@ function generateReceiptEmail(enrollment: EnrollmentData): EmailTemplate {
         </div>
 
         <div class="footer">
-            <p><strong>Frontend Bootcamp by Praveen Kumawat</strong></p>
+            <p><strong>GenZ Coding School</strong></p>
             <p>Follow us:
-                <a href="https://instagram.com/praveenkumawat_dev">Instagram</a> |
-                <a href="https://youtube.com/@praveenkumawat">YouTube</a> |
-                <a href="mailto:praveen@frontendbootcamp.com">Email</a>
+                <a href="https://www.instagram.com/genz_coding_school/">Instagram</a> |
+                <a href="https://www.youtube.com/@genzcodingschool">YouTube</a> |
+                <a href="mailto:genzcodingschool@gmail.com">Email</a>
             </p>
             <p style="font-size: 12px; margin-top: 15px;">This is an automated receipt. Please save this email for your records.</p>
         </div>
