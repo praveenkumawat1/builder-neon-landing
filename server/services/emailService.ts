@@ -99,11 +99,11 @@ function generateReceiptEmail(enrollment: EnrollmentData): EmailTemplate {
             <p>Welcome to the Frontend Bootcamp Community</p>
             <div class="success-badge">✅ Enrollment Confirmed</div>
         </div>
-        
+
         <div class="content">
             <h2>Hi ${enrollment.name}! 👋</h2>
             <p>Thank you for enrolling in our Frontend Bootcamp! Your payment has been successfully processed and your enrollment is now <strong>confirmed</strong>.</p>
-            
+
             <div class="receipt-box">
                 <h3 style="margin-top: 0; color: #1e293b;">📄 Payment Receipt</h3>
                 <div class="receipt-row">
@@ -135,19 +135,19 @@ function generateReceiptEmail(enrollment: EnrollmentData): EmailTemplate {
                     <span class="receipt-value">${enrollmentDate}</span>
                 </div>
             </div>
-            
+
             <div class="total-amount">
                 <h3 style="margin: 0;">💰 Total Amount Paid</h3>
                 <h2 style="margin: 10px 0 0 0; font-size: 32px;">₹${plan.price}</h2>
             </div>
-            
+
             <div class="features">
                 <h3>🚀 What's Included in Your ${plan.name}</h3>
                 <ul>
                     ${plan.features.map((feature) => `<li>${feature}</li>`).join("")}
                 </ul>
             </div>
-            
+
             <div class="next-steps">
                 <h3 style="margin-top: 0; color: #059669;">📋 Next Steps</h3>
                 <p><strong>1. WhatsApp Group:</strong> You'll be added to our bootcamp WhatsApp group within 2 hours for important updates and community support.</p>
@@ -155,26 +155,26 @@ function generateReceiptEmail(enrollment: EnrollmentData): EmailTemplate {
                 <p><strong>3. Course Start:</strong> Classes begin on <strong>July 10, 2024</strong> at 7:00 PM IST.</p>
                 <p><strong>4. Preparation:</strong> Set up your development environment (we'll guide you!).</p>
             </div>
-            
+
             <div class="contact-info">
                 <h3 style="margin-top: 0; color: #d97706;">📞 Need Help?</h3>
-                <p><strong>Instructor:</strong> Praveen Kumawat</p>
-                <p><strong>Phone/WhatsApp:</strong> +91 97725 36873</p>
-                <p><strong>Email:</strong> praveen@frontendbootcamp.com</p>
+                <p><strong>Support Team:</strong> GenZ Coding School</p>
+                <p><strong>Phone/WhatsApp:</strong> +91 97725 46873</p>
+                <p><strong>Email:</strong> genzcodingschool@gmail.com</p>
                 <p><strong>Support Hours:</strong> 9:00 AM - 9:00 PM IST</p>
             </div>
-            
+
             <div style="text-align: center; margin: 30px 0;">
                 <p style="font-size: 18px; color: #1e293b;"><strong>🎯 Ready to become a Frontend Developer?</strong></p>
                 <p>Save this email for your records. We're excited to have you on this journey!</p>
             </div>
         </div>
-        
+
         <div class="footer">
             <p><strong>Frontend Bootcamp by Praveen Kumawat</strong></p>
-            <p>Follow us: 
-                <a href="https://instagram.com/praveenkumawat_dev">Instagram</a> | 
-                <a href="https://youtube.com/@praveenkumawat">YouTube</a> | 
+            <p>Follow us:
+                <a href="https://instagram.com/praveenkumawat_dev">Instagram</a> |
+                <a href="https://youtube.com/@praveenkumawat">YouTube</a> |
                 <a href="mailto:praveen@frontendbootcamp.com">Email</a>
             </p>
             <p style="font-size: 12px; margin-top: 15px;">This is an automated receipt. Please save this email for your records.</p>
