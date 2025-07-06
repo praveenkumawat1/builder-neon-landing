@@ -214,15 +214,15 @@ NEXT STEPS:
 
 CONTACT SUPPORT:
 ===============
-Instructor: Praveen Kumawat
-Phone/WhatsApp: +91 97725 36873
-Email: praveen@frontendbootcamp.com
+Support Team: GenZ Coding School
+Phone/WhatsApp: +91 97725 46873
+Email: genzcodingschool@gmail.com
 Support Hours: 9:00 AM - 9:00 PM IST
 
 Save this email for your records. We're excited to have you on this journey!
 
 ---
-Frontend Bootcamp by Praveen Kumawat
+GenZ Coding School
 `;
 
   return { subject, html, text };
