@@ -993,7 +993,11 @@ export default function Index() {
                   className="text-neon-cyan hover:bg-neon-cyan hover:text-background"
                   asChild
                 >
-                  <a href="https://www.instagram.com/genz_coding_school/" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.instagram.com/genz_coding_school/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Instagram className="w-4 h-4" />
                   </a>
                 </Button>
@@ -1003,7 +1007,11 @@ export default function Index() {
                   className="text-neon-purple hover:bg-neon-purple hover:text-background"
                   asChild
                 >
-                  <a href="https://www.youtube.com/@genzcodingschool" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.youtube.com/@genzcodingschool"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Youtube className="w-4 h-4" />
                   </a>
                 </Button>
@@ -1013,8 +1021,13 @@ export default function Index() {
                   className="text-neon-pink hover:bg-neon-pink hover:text-background"
                   asChild
                 >
-                  <a href="www.linkedin.com/in/genz-coding-school-571078348" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://www.linkedin.com/in/genz-coding-school-571078348"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Github className="w-4 h-4" />
+                  </a>
                 </Button>
               </div>
               <div className="text-sm text-muted-foreground space-y-1">
