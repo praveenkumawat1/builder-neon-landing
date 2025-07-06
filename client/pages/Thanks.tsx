@@ -399,7 +399,7 @@ export default function Thanks() {
                     asChild
                     className="bg-gradient-to-r from-neon-cyan to-neon-purple hover:from-neon-cyan/80 hover:to-neon-purple/80"
                   >
-                    <a href="mailto:praveen@frontendbootcamp.com">
+                    <a href="mailto:genzcodingschool@gmail.com">
                       <Mail className="w-4 h-4 mr-2" />
                       Email Support
                     </a>
