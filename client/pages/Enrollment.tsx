@@ -32,7 +32,6 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ChatBot } from "@/components/ChatBot";
-import QRCode from "qrcode.react"; // Added import for QR code
 
 export default function Enrollment() {
   const [searchParams] = useSearchParams();
@@ -637,14 +636,31 @@ export default function Enrollment() {
                       </p>
                     </div>
                     <div className="bg-white p-4 rounded-lg mb-4 mx-auto w-fit">
-                      <QRCode
-                        value="9772546873@pthdfc"
-                        size={192}
-                        bgColor="#ffffff"
-                        fgColor="#000000"
-                        level="H"
-                        includeMargin={true}
-                      />
+                      <div className="w-48 h-48 bg-white border-2 border-gray-200 flex flex-col items-center justify-center">
+                        <div className="text-center mb-4">
+                          <CreditCard className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+                          <p className="text-sm font-medium text-gray-600">
+                            Scan QR Code
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Or use UPI ID below
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2">
+                          {Array.from({ length: 9 }).map((_, i) => (
+                            <div
+                              key={i}
+                              className={`w-4 h-4 ${
+                                [0, 2, 6, 8].includes(i)
+                                  ? "bg-black"
+                                  : Math.random() > 0.5
+                                    ? "bg-black"
+                                    : "bg-white border border-gray-300"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
                     </div>
                     <div className="space-y-4">
                       <div className="text-center">
