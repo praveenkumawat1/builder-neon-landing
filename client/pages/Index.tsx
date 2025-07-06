@@ -42,6 +42,7 @@ import {
   Smartphone,
   Globe,
   Shield,
+  Sparkles,
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
