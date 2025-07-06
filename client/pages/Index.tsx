@@ -674,13 +674,15 @@ export default function Index() {
               </CardHeader>
               <CardContent className="space-y-3">
                 {[
-                  "Everything in Starter",
-                  "1-on-1 Doubt Sessions (3x)",
-                  "Portfolio Review & Feedback",
-                  "Interview Preparation",
-                  "Job Referrals Network",
-                  "Premium Resources & Tools",
-                  "Priority Support",
+                  "HTML, CSS, JS, Tailwind, GSAP",
+                  "Daily Live Classes",
+                  "2 Projects (Intermediate)",
+                  "All Topics Notes",
+                  "Practice Sheets",
+                  "Completion Certificate",
+                  "Community Access",
+                  "Standard Assignments/Tasks",
+                  "Group + Chat Doubt Solving",
                 ].map((feature, index) => (
                   <div key={index} className="flex items-center gap-2 text-sm">
                     <CheckCircle className="w-4 h-4 text-neon-purple flex-shrink-0" />
