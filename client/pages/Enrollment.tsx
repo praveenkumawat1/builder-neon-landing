@@ -68,7 +68,7 @@ export default function Enrollment() {
           duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.5"
+        "-=0.5",
       )
       .from(
         ".payment-section",
@@ -78,7 +78,7 @@ export default function Enrollment() {
           duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.5"
+        "-=0.5",
       );
   }, []);
 
@@ -145,7 +145,7 @@ export default function Enrollment() {
           });
           setTimeout(() => {
             navigate(
-              `/thanks?type=demo&email=${encodeURIComponent(formData.email)}`
+              `/thanks?type=demo&email=${encodeURIComponent(formData.email)}`,
             );
           }, 1500);
         } else {
@@ -180,7 +180,7 @@ export default function Enrollment() {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({ transactionId: formData.transactionId }),
-            }
+            },
           );
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -203,7 +203,7 @@ export default function Enrollment() {
           });
           setTimeout(() => {
             navigate(
-              `/thanks?type=join&email=${encodeURIComponent(formData.email)}`
+              `/thanks?type=join&email=${encodeURIComponent(formData.email)}`,
             );
           }, 1500);
         } else {
@@ -412,7 +412,9 @@ export default function Enrollment() {
                       id="name"
                       placeholder="Enter your full name"
                       value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
+                      onChange={(e) =>
+                        handleInputChange("name", e.target.value)
+                      }
                       className="bg-background/50 border-border focus:border-neon-cyan"
                       required
                     />
@@ -565,7 +567,7 @@ export default function Enrollment() {
                         Processing...
                       </div>
                     ) : isDemo ? (
-                      "🎯 Book Free Climat"
+                      "🎯 Book Free Demo"
                     ) : showPayment && formData.transactionId ? (
                       "✅ Complete Enrollment"
                     ) : (
@@ -634,16 +636,36 @@ export default function Enrollment() {
                       </p>
                     </div>
                     <div className="bg-white p-4 rounded-lg mb-4 mx-auto w-fit">
-                      <img
-                        src="/qr-code.png" // Assumes image is in public/ folder
-                        alt="UPI QR Code"
-                        className="w-48 h-48 object-contain"
-                      />
+                      <div className="w-48 h-48 bg-white border-2 border-gray-200 flex flex-col items-center justify-center">
+                        <div className="text-center mb-4">
+                          <CreditCard className="w-12 h-12 text-gray-400 mx-auto mb-2" />
+                          <p className="text-sm font-medium text-gray-600">
+                            Scan QR Code
+                          </p>
+                          <p className="text-xs text-gray-500">
+                            Or use UPI ID below
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-3 gap-2">
+                          {Array.from({ length: 9 }).map((_, i) => (
+                            <div
+                              key={i}
+                              className={`w-4 h-4 ${
+                                [0, 2, 6, 8].includes(i)
+                                  ? "bg-black"
+                                  : Math.random() > 0.5
+                                    ? "bg-black"
+                                    : "bg-white border border-gray-300"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      </div>
                     </div>
                     <div className="space-y-4">
                       <div className="text-center">
                         <p className="font-semibold mb-2">Scan QR Code or</p>
-                        <div className.*className="bg-background/50 rounded-lg p-3 border border-border">
+                        <div className="bg-background/50 rounded-lg p-3 border border-border">
                           <div className="flex items-center justify-between">
                             <span className="text-sm">
                               UPI ID: 9772546873@pthdfc
@@ -705,6 +727,6 @@ export default function Enrollment() {
         </div>
       </div>
       <ChatBot />
-    </div >
+    </div>
   );
 }
