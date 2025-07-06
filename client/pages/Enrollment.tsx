@@ -331,7 +331,7 @@ export default function Enrollment() {
   const planConfig = {
     starter: {
       name: "Starter Plan",
-      price: "₹99",
+      price: "₹149",
       color: "neon-green",
       features: [
         "21 Days Live Classes",
