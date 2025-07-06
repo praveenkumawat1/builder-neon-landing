@@ -724,7 +724,7 @@ export default function Enrollment() {
               </CardContent>
             </Card>
           </div>
-        </div>d
+        </div>
       </div>
       <ChatBot />
     </div>
