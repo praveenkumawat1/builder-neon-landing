@@ -307,7 +307,7 @@ export default function Thanks() {
                   className="border-neon-purple text-neon-purple hover:bg-neon-purple hover:text-background"
                 >
                   <a
-                    href="https://youtube.com/@praveenkumawat"
+                    href="https://www.youtube.com/@genzcodingschool"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
